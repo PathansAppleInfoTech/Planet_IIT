@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import logo from '../assets/logo-transparent.png'
-
+import './Header.css'
 const NAV = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },

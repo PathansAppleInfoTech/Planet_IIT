@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
-import { useScroll, useTransform } from 'framer-motion'
 
 import Reveal from '../components/Reveal.jsx'
 import { leadership } from '../data/team.js'
@@ -9,6 +8,7 @@ import { leadership } from '../data/team.js'
 import aboutHero from '../assets/about-hero.png'
 import aboutLab from '../assets/about-lab.png'
 import aboutTechnology from '../assets/about-technology.png'
+
 import './About.css'
 
 const VALUES = [
@@ -38,20 +38,44 @@ const VALUES = [
   },
 ]
 
+const TECHNOLOGIES = [
+  {
+    number: '01',
+    title: 'Software',
+    text:
+      'Web development, full-stack technologies and application development.',
+  },
+  {
+    number: '02',
+    title: 'Intelligence',
+    text:
+      'Machine learning, artificial intelligence and data-driven systems.',
+  },
+  {
+    number: '03',
+    title: 'Connected Systems',
+    text:
+      'Embedded C, IoT, electronics and connected technology.',
+  },
+  {
+    number: '04',
+    title: 'Data',
+    text:
+      'SQL, MySQL, DBMS, data analytics, migration and database solutions.',
+  },
+]
 
 export default function About() {
-
   return (
     <main className="about-page">
 
       {/* =====================================================
-          ABOUT HERO
+          HERO
       ===================================================== */}
 
       <section className="about-hero">
 
         <div className="about-hero-grid" />
-
         <div className="about-hero-glow" />
 
         <div className="container">
@@ -73,79 +97,47 @@ export default function About() {
                 understanding.
               </h1>
 
-              <p>
-                Planet Institute and Information Technology
-                brings technology education and practical IT
-                solutions together under one roof.
-              </p>
+              <div className="about-hero-bottom">
 
-              <div className="about-hero-actions">
+                <p>
+                  Planet Institute and Information Technology
+                  brings technology education and practical IT
+                  solutions together under one roof.
+                </p>
 
-                <NavLink
-                  to="/courses"
-                  className="about-primary-button"
-                >
-                  Explore our programs
-                  <span>↗</span>
-                </NavLink>
+                <div className="about-hero-actions">
 
-                <NavLink
-                  to="/contact"
-                  className="about-text-button"
-                >
-                  Talk to us
-                </NavLink>
+                  <NavLink
+                    to="/courses"
+                    className="about-primary-button"
+                  >
+                    <span>Explore our programs</span>
+                    <b>↗</b>
+                  </NavLink>
 
-              </div>
+                  <NavLink
+                    to="/contact"
+                    className="about-text-button"
+                  >
+                    Talk to us
+                    <span>↗</span>
+                  </NavLink>
 
-            </Reveal>
-
-
-            <Reveal
-              className="about-hero-visual"
-              delay={0.15}
-            >
-
-              <div className="about-hero-image">
-
-                <img
-                  src={aboutHero}
-                  alt="Planet IIT technology environment"
-                />
-
-                <div className="about-image-overlay" />
-
-                <div className="about-image-frame" />
-
-              </div>
-
-
-              <div className="about-floating-label">
-
-                <span className="about-pulse" />
-
-                <div>
-                  <small>
-                    SYSTEM STATUS
-                  </small>
-
-                  <strong>
-                    LEARNING + BUILDING
-                  </strong>
                 </div>
 
               </div>
 
-
-              <div className="about-coordinate">
-                <span>PLN / 01</span>
-                <strong>TECHNOLOGY</strong>
-              </div>
-
             </Reveal>
+
+            <HeroVisual />
 
           </div>
 
+        </div>
+
+        <div className="about-scroll-indicator">
+          <span>SCROLL TO EXPLORE</span>
+          <i />
         </div>
 
       </section>
@@ -162,37 +154,53 @@ export default function About() {
           <Reveal className="about-intro-layout">
 
             <div className="about-intro-index">
-              01
+              <span>01</span>
+              <i />
             </div>
 
             <div className="about-intro-content">
 
-              <span className="section-kicker">
+              <div className="section-kicker">
                 WHO WE ARE
-              </span>
+              </div>
 
               <h2>
                 An institute built
                 <br />
                 around
-                <span> technology.</span>
+                <em> technology.</em>
               </h2>
 
-              <div className="about-intro-columns">
+              <div className="about-intro-bottom">
 
-                <p>
-                  Planet IIT — Planet Institute and
-                  Information Technology — operates at the
-                  intersection of technology education and
-                  practical IT solutions.
-                </p>
+                <div className="about-intro-statement">
+                  <span>01 / APPROACH</span>
+                  <strong>
+                    Learn it.
+                    <br />
+                    Understand it.
+                    <br />
+                    Build it.
+                  </strong>
+                </div>
 
-                <p>
-                  The idea is simple: technology should not
-                  remain something that is only discussed in
-                  classrooms. It should be understood,
-                  experimented with, built and applied.
-                </p>
+                <div className="about-intro-copy">
+
+                  <p>
+                    Planet IIT — Planet Institute and
+                    Information Technology — operates at the
+                    intersection of technology education and
+                    practical IT solutions.
+                  </p>
+
+                  <p>
+                    The idea is simple: technology should not
+                    remain something that is only discussed in
+                    classrooms. It should be understood,
+                    experimented with, built and applied.
+                  </p>
+
+                </div>
 
               </div>
 
@@ -215,14 +223,15 @@ export default function About() {
 
           <Reveal className="about-section-heading">
 
-            <span className="section-kicker">
-              02 / THE PLANET IIT MODEL
-            </span>
+            <div className="section-heading-meta">
+              <span>02</span>
+              <span>THE PLANET IIT MODEL</span>
+            </div>
 
             <h2>
               Two disciplines.
               <br />
-              <span>One technology mindset.</span>
+              <em>One technology mindset.</em>
             </h2>
 
           </Reveal>
@@ -233,7 +242,7 @@ export default function About() {
             {/* EDUCATION */}
 
             <Reveal
-              className="about-world-card"
+              className="about-world-item"
               delay={0.05}
             >
 
@@ -245,41 +254,46 @@ export default function About() {
                   loading="lazy"
                 />
 
-                <div />
+                <div className="world-image-shade" />
 
-                <span>
+                <span className="world-image-label">
                   ACADEMY / 01
+                </span>
+
+                <span className="world-image-arrow">
+                  ↗
                 </span>
 
               </div>
 
-
               <div className="about-world-body">
 
-                <span className="about-world-number">
+                <div className="world-number">
                   01
-                </span>
+                </div>
 
-                <h3>
-                  Technology
-                  <br />
-                  Academy
-                </h3>
+                <div className="world-content">
 
-                <p>
-                  Training across modern programming,
-                  development, artificial intelligence,
-                  databases, embedded systems, IoT and
-                  other technology disciplines.
-                </p>
+                  <h3>
+                    Technology
+                    <br />
+                    Academy
+                  </h3>
 
-                <div className="about-world-tags">
+                  <p>
+                    Training across modern programming,
+                    development, artificial intelligence,
+                    databases, embedded systems, IoT and
+                    other technology disciplines.
+                  </p>
 
-                  <span>FULL STACK</span>
-                  <span>PYTHON</span>
-                  <span>FLUTTER</span>
-                  <span>AI</span>
-                  <span>IOT</span>
+                  <div className="about-world-tags">
+                    <span>FULL STACK</span>
+                    <span>PYTHON</span>
+                    <span>FLUTTER</span>
+                    <span>AI</span>
+                    <span>IOT</span>
+                  </div>
 
                 </div>
 
@@ -291,7 +305,7 @@ export default function About() {
             {/* SOLUTIONS */}
 
             <Reveal
-              className="about-world-card"
+              className="about-world-item"
               delay={0.15}
             >
 
@@ -303,40 +317,45 @@ export default function About() {
                   loading="lazy"
                 />
 
-                <div />
+                <div className="world-image-shade" />
 
-                <span>
+                <span className="world-image-label">
                   SOLUTIONS / 02
+                </span>
+
+                <span className="world-image-arrow">
+                  ↗
                 </span>
 
               </div>
 
-
               <div className="about-world-body">
 
-                <span className="about-world-number">
+                <div className="world-number">
                   02
-                </span>
+                </div>
 
-                <h3>
-                  IT
-                  <br />
-                  Solutions
-                </h3>
+                <div className="world-content">
 
-                <p>
-                  Practical technology solutions covering
-                  software, automation, data, analytics,
-                  database systems and digital requirements.
-                </p>
+                  <h3>
+                    IT
+                    <br />
+                    Solutions
+                  </h3>
 
-                <div className="about-world-tags">
+                  <p>
+                    Practical technology solutions covering
+                    software, automation, data, analytics,
+                    database systems and digital requirements.
+                  </p>
 
-                  <span>SOFTWARE</span>
-                  <span>AUTOMATION</span>
-                  <span>DATA</span>
-                  <span>DATABASE</span>
-                  <span>ANALYTICS</span>
+                  <div className="about-world-tags">
+                    <span>SOFTWARE</span>
+                    <span>AUTOMATION</span>
+                    <span>DATA</span>
+                    <span>DATABASE</span>
+                    <span>ANALYTICS</span>
+                  </div>
 
                 </div>
 
@@ -366,45 +385,25 @@ export default function About() {
 
         <div className="container">
 
-          <Reveal className="about-section-heading">
+          <Reveal className="about-section-heading focus-heading">
 
-            <span className="section-kicker">
-              04 / TECHNOLOGY FOCUS
-            </span>
+            <div className="section-heading-meta">
+              <span>04</span>
+              <span>TECHNOLOGY FOCUS</span>
+            </div>
 
             <h2>
               Learn the
               <br />
-              <span>systems behind the screen.</span>
+              <em>systems behind the screen.</em>
             </h2>
 
           </Reveal>
 
 
-          <div className="about-focus-grid">
+          <div className="about-focus-list">
 
-            {[
-              {
-                number: '01',
-                title: 'Software',
-                text: 'Web development, full-stack technologies and application development.',
-              },
-              {
-                number: '02',
-                title: 'Intelligence',
-                text: 'Machine learning, artificial intelligence and data-driven systems.',
-              },
-              {
-                number: '03',
-                title: 'Connected Systems',
-                text: 'Embedded C, IoT, electronics and connected technology.',
-              },
-              {
-                number: '04',
-                title: 'Data',
-                text: 'SQL, MySQL, DBMS, data analytics, migration and database solutions.',
-              },
-            ].map((item, index) => (
+            {TECHNOLOGIES.map((item, index) => (
 
               <Reveal
                 key={item.number}
@@ -445,20 +444,21 @@ export default function About() {
 
       <section className="about-values-section">
 
-        <div className="about-values-glow" />
+        <div className="values-background" />
 
         <div className="container">
 
           <Reveal className="about-section-heading">
 
-            <span className="section-kicker">
-              05 / HOW WE THINK
-            </span>
+            <div className="section-heading-meta">
+              <span>05</span>
+              <span>HOW WE THINK</span>
+            </div>
 
             <h2>
               Principles that
               <br />
-              <span>shape the work.</span>
+              <em>shape the work.</em>
             </h2>
 
           </Reveal>
@@ -511,28 +511,33 @@ export default function About() {
 
           <Reveal className="about-section-heading">
 
-            <span className="section-kicker">
-              06 / LEADERSHIP
-            </span>
+            <div className="section-heading-meta">
+              <span>06</span>
+              <span>LEADERSHIP</span>
+            </div>
 
             <h2>
               The people behind
               <br />
-              <span>Planet IIT.</span>
+              <em>Planet IIT.</em>
             </h2>
 
           </Reveal>
 
 
-          <div className="about-team-grid">
+          <div className="about-team-list">
 
             {leadership.map((member, index) => (
 
               <Reveal
                 key={member.code}
-                className="about-team-card"
+                className="about-team-member"
                 delay={index * 0.1}
               >
+
+                <div className="team-index">
+                  {member.code}
+                </div>
 
                 <div className="about-team-image">
 
@@ -548,14 +553,9 @@ export default function About() {
                     </div>
                   )}
 
-                  <div className="about-team-image-overlay" />
-
-                  <span>
-                    {member.code}
-                  </span>
+                  <div className="team-image-line" />
 
                 </div>
-
 
                 <div className="about-team-info">
 
@@ -610,21 +610,22 @@ export default function About() {
 
       <section className="about-final-cta">
 
-        <div className="about-final-orbit orbit-a" />
-        <div className="about-final-orbit orbit-b" />
+        <div className="final-grid" />
+        <div className="final-orbit orbit-a" />
+        <div className="final-orbit orbit-b" />
 
         <div className="container">
 
           <Reveal className="about-final-content">
 
-            <span className="section-kicker">
+            <div className="section-kicker">
               PLANET IIT / NEXT
-            </span>
+            </div>
 
             <h2>
               Learn something.
               <br />
-              <span>Build something.</span>
+              <em>Build something.</em>
             </h2>
 
             <p>
@@ -648,6 +649,7 @@ export default function About() {
                 className="about-final-secondary"
               >
                 Contact Planet IIT
+                <span>↗</span>
               </NavLink>
 
             </div>
@@ -659,6 +661,94 @@ export default function About() {
       </section>
 
     </main>
+  )
+}
+
+
+/* ============================================================
+   HERO VISUAL
+   ============================================================ */
+
+function HeroVisual() {
+
+  const ref = useRef(null)
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end start'],
+  })
+
+  const imageY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [45, -45]
+  )
+
+  const imageScale = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [1.06, 1]
+  )
+
+  return (
+    <Reveal
+      className="about-hero-visual"
+      delay={0.15}
+    >
+
+      <div
+        ref={ref}
+        className="hero-visual-wrap"
+      >
+
+        <motion.div
+          className="about-hero-image"
+          style={{
+            y: imageY,
+            scale: imageScale,
+          }}
+        >
+          <img
+            src={aboutHero}
+            alt="Planet IIT technology environment"
+          />
+
+          <div className="about-image-overlay" />
+        </motion.div>
+
+        <div className="about-image-frame" />
+
+        <div className="about-floating-label">
+
+          <span className="about-pulse" />
+
+          <div>
+            <small>
+              SYSTEM STATUS
+            </small>
+
+            <strong>
+              LEARNING + BUILDING
+            </strong>
+          </div>
+
+        </div>
+
+        <div className="about-coordinate">
+
+          <span>
+            PLN / 01
+          </span>
+
+          <strong>
+            TECHNOLOGY
+          </strong>
+
+        </div>
+
+      </div>
+
+    </Reveal>
   )
 }
 
@@ -679,7 +769,13 @@ function AboutStatement() {
   const y = useTransform(
     scrollYProgress,
     [0, 1],
-    [70, -70]
+    [80, -80]
+  )
+
+  const scale = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [1.08, 1]
   )
 
   return (
@@ -690,7 +786,10 @@ function AboutStatement() {
 
       <motion.div
         className="about-statement-image"
-        style={{ y }}
+        style={{
+          y,
+          scale,
+        }}
       >
         <img
           src={aboutTechnology}
@@ -699,8 +798,9 @@ function AboutStatement() {
         />
       </motion.div>
 
-
       <div className="about-statement-overlay" />
+
+      <div className="statement-line" />
 
       <div className="container">
 

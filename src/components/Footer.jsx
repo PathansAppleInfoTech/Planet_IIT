@@ -1,6 +1,14 @@
 import { NavLink, Link } from 'react-router-dom'
 import logo from '../assets/logo-transparent.png'
 import { courseCategories } from '../data/courses'
+import './Footer.css'
+
+const NAV = [
+  { label: 'Home', to: '/' },
+  { label: 'About', to: '/about' },
+  { label: 'Courses', to: '/courses' },
+  { label: 'Contact', to: '/contact' },
+]
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -8,61 +16,89 @@ export default function Footer() {
   return (
     <footer className="site-footer">
 
-      {/* Decorative futuristic background */}
-      <div className="footer-orbit orbit-one" />
-      <div className="footer-orbit orbit-two" />
+      {/* =====================================================
+          DECORATIVE BACKGROUND
+          ===================================================== */}
 
       <div className="footer-grid-lines" />
 
+      <div className="footer-orbit orbit-one" />
+      <div className="footer-orbit orbit-two" />
+
+
       <div className="container">
 
-        {/* Massive CTA */}
-        <div className="footer-hero">
+        {/* ===================================================
+            FOOTER INTRO
+            =================================================== */}
 
-          <div className="footer-eyebrow">
-            <span className="status-dot" />
-            PLANET IIT / TECHNOLOGY PARTNER
+        <div className="footer-intro">
+
+          <div className="footer-intro-left">
+
+            <div className="footer-eyebrow">
+              <span className="status-dot" />
+              PLANET IIT / TECHNOLOGY EDUCATION
+            </div>
+
+            <h2>
+              Learn.
+              <br />
+              <span>Build. Grow.</span>
+            </h2>
+
           </div>
 
-          <h2>
-            Build the future.
-            <br />
-            <span>Learn the technology.</span>
-          </h2>
+          <div className="footer-intro-right">
 
-          <p>
-            Technology training, software development and
-            practical IT solutions — built around real-world
-            skills and real-world applications.
-          </p>
+            <p>
+              Practical technology education, professional IT
+              training and real-world digital solutions designed
+              to help you move forward.
+            </p>
 
-          <Link
-            to="/contact"
-            className="footer-main-cta"
-          >
-            <span>Start a Conversation</span>
+            <Link
+              to="/contact"
+              className="footer-main-cta"
+            >
+              <span>Start a Conversation</span>
 
-            <span className="footer-cta-icon">
-              ↗
-            </span>
-          </Link>
+              <span className="footer-cta-icon">
+                ↗
+              </span>
+            </Link>
+
+          </div>
+
         </div>
 
-        {/* Divider */}
+
+        {/* ===================================================
+            DIVIDER
+            =================================================== */}
+
         <div className="footer-divider">
           <span />
         </div>
 
-        {/* Footer content */}
+
+        {/* ===================================================
+            MAIN FOOTER
+            =================================================== */}
+
         <div className="footer-content">
 
-          {/* Brand */}
+          {/* =================================================
+              BRAND
+              ================================================= */}
+
           <div className="footer-brand-block">
 
             <Link
               to="/"
               className="footer-brand"
             >
+
               <div className="footer-logo-box">
                 <img
                   src={logo}
@@ -70,7 +106,8 @@ export default function Footer() {
                 />
               </div>
 
-              <div>
+              <div className="footer-brand-copy">
+
                 <div className="footer-brand-name">
                   PLANET <span>IIT</span>
                 </div>
@@ -78,100 +115,174 @@ export default function Footer() {
                 <div className="footer-brand-sub">
                   INSTITUTE & INFORMATION TECHNOLOGY
                 </div>
+
               </div>
+
             </Link>
 
-            <p>
+
+            <p className="footer-brand-description">
               A technology-focused institute providing
               professional IT training and practical
               technology solutions.
             </p>
 
+
             <div className="footer-location">
               <span className="location-pulse" />
-              Kerala, India
+              <span>Kerala, India</span>
             </div>
+
           </div>
 
-          {/* Navigation */}
+
+          {/* =================================================
+              EXPLORE
+              ================================================= */}
+
           <div className="footer-column">
-            <h3>Explore</h3>
 
-            <NavLink to="/">
-              Home
-            </NavLink>
+            <div className="footer-column-label">
+              01 / EXPLORE
+            </div>
 
-            <NavLink to="/about">
-              About
-            </NavLink>
+            <h3>
+              Navigate
+            </h3>
 
-            <NavLink to="/courses">
-              Courses
-            </NavLink>
+            <nav className="footer-links">
 
-            <NavLink to="/contact">
-              Contact
-            </NavLink>
-          </div>
-
-          {/* Programs */}
-          <div className="footer-column">
-            <h3>Programs</h3>
-
-            {courseCategories
-              .slice(0, 5)
-              .map((course) => (
+              {NAV.map((item) => (
                 <NavLink
-                  key={course.slug}
-                  to={`/courses#${course.slug}`}
+                  key={item.to}
+                  to={item.to}
                 >
-                  {course.shortTitle}
+                  <span>{item.label}</span>
+                  <span className="footer-link-arrow">
+                    ↗
+                  </span>
                 </NavLink>
               ))}
+
+            </nav>
+
           </div>
 
-          {/* Contact */}
-          <div className="footer-column footer-contact">
-            <h3>Connect</h3>
 
-            <a href="mailto:Info@planetiit.com">
+          {/* =================================================
+              PROGRAMS
+              ================================================= */}
+
+          <div className="footer-column">
+
+            <div className="footer-column-label">
+              02 / PROGRAMS
+            </div>
+
+            <h3>
+              Learn With Us
+            </h3>
+
+            <nav className="footer-links">
+
+              {courseCategories
+                .slice(0, 5)
+                .map((course) => (
+                  <NavLink
+                    key={course.slug}
+                    to={`/courses#${course.slug}`}
+                  >
+                    <span>
+                      {course.shortTitle}
+                    </span>
+
+                    <span className="footer-link-arrow">
+                      ↗
+                    </span>
+                  </NavLink>
+                ))}
+
+            </nav>
+
+          </div>
+
+
+          {/* =================================================
+              CONTACT
+              ================================================= */}
+
+          <div className="footer-column footer-contact">
+
+            <div className="footer-column-label">
+              03 / CONNECT
+            </div>
+
+            <h3>
+              Get in Touch
+            </h3>
+
+            <a
+              href="mailto:info@planetiit.com"
+              className="footer-email"
+            >
               info@planetiit.com
             </a>
 
-            <span>
+            <div className="footer-contact-location">
               Kerala, India
-            </span>
+            </div>
 
-            <span className="footer-small-text">
-              Near Aruvithura Akshaya Center Erattupetta , Kottayam District Kerala India Pin 686122
-            </span>
+            <p className="footer-address">
+              Near Aruvithura Akshaya Center,
+              Erattupetta, Kottayam District,
+              Kerala, India — 686122
+            </p>
+
           </div>
 
         </div>
 
-        {/* Bottom */}
+
+        {/* ===================================================
+            BOTTOM
+            =================================================== */}
+
         <div className="footer-bottom">
 
-          <div>
+          <div className="footer-copyright">
             © {year} Planet IIT.
-            All rights reserved.
+            <span>All rights reserved.</span>
           </div>
+
 
           <div className="footer-bottom-center">
+
             <span>IT TRAINING</span>
-            <span>•</span>
+
+            <span className="footer-dot">
+              •
+            </span>
+
             <span>SOFTWARE</span>
-            <span>•</span>
+
+            <span className="footer-dot">
+              •
+            </span>
+
             <span>TECHNOLOGY</span>
+
           </div>
 
+
           <div className="footer-code">
+            <span className="footer-code-dot" />
             PLANET_IIT
           </div>
 
         </div>
 
       </div>
+
     </footer>
   )
 }

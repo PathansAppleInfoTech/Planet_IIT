@@ -1,8 +1,13 @@
 import { NavLink } from 'react-router-dom'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import {
+  motion,
+  useScroll,
+  useTransform,
+} from 'framer-motion'
 import { useRef } from 'react'
 import './Home.css'
 import Reveal from '../components/Reveal.jsx'
+
 import {
   courseCategories,
   enterpriseServices,
@@ -26,99 +31,79 @@ export default function Home() {
           HERO
       ===================================================== */}
 
-      <section className="planet-hero">
+      <section className="home-hero">
 
-        <div className="hero-noise" />
-        <div className="hero-grid" />
-
-        <div className="hero-glow hero-glow-one" />
-        <div className="hero-glow hero-glow-two" />
+        <div className="hero-blue-wash" />
+        <div className="hero-technical-grid" />
+        <div className="hero-orbit hero-orbit-one" />
+        <div className="hero-orbit hero-orbit-two" />
 
         <div className="container">
 
-          <div className="hero-layout">
+          <div className="home-hero-layout">
 
-            {/* LEFT CONTENT */}
-            <div className="hero-content">
+            {/* LEFT */}
+
+            <div className="home-hero-copy">
 
               <motion.div
-                className="hero-status"
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7 }}
+                className="hero-eyebrow"
+                initial={{
+                  opacity: 0,
+                  y: 15,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  duration: .7,
+                  ease,
+                }}
               >
-                <span className="status-light" />
+
+                <span className="hero-eyebrow-line" />
 
                 <span>
-                  TECHNOLOGY • EDUCATION • SOLUTIONS
+                  PLANET INSTITUTE & INFORMATION TECHNOLOGY
                 </span>
 
-                <span className="status-location">
+                <span className="hero-eyebrow-location">
                   KERALA / INDIA
                 </span>
+
               </motion.div>
 
 
               <motion.h1
-                className="hero-heading"
+                className="home-hero-title"
                 initial={{
                   opacity: 0,
-                  y: 50,
+                  y: 55,
                 }}
                 animate={{
                   opacity: 1,
                   y: 0,
                 }}
                 transition={{
-                  duration: 1.1,
-                  delay: 0.12,
+                  duration: 1,
+                  delay: .12,
                   ease,
                 }}
               >
-                Where
+
+                Technology
                 <br />
 
-                <span className="hero-heading-outline">
-                  technology
+                <span className="hero-title-blue">
+                  with purpose.
                 </span>
 
-                <br />
-
-                becomes
-                <br />
-
-                <span className="hero-heading-gradient">
-                  capability.
-                </span>
               </motion.h1>
 
 
               <motion.p
-                className="hero-description"
-                initial={{
-                  opacity: 0,
-                  y: 30,
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  duration: 0.9,
-                  delay: 0.4,
-                  ease,
-                }}
-              >
-                Planet IIT brings technology education and
-                practical IT solutions together — helping
-                students learn modern technologies while
-                helping businesses turn ideas into working
-                digital solutions.
-              </motion.p>
-
-
-              <motion.div
-                className="hero-actions"
+                className="home-hero-description"
                 initial={{
                   opacity: 0,
                   y: 25,
@@ -128,40 +113,64 @@ export default function Home() {
                   y: 0,
                 }}
                 transition={{
-                  duration: 0.8,
-                  delay: 0.6,
+                  duration: .8,
+                  delay: .35,
+                  ease,
+                }}
+              >
+                Planet IIT brings together technology education
+                and practical IT solutions — helping people learn
+                modern technology while helping businesses turn
+                ideas into working digital systems.
+              </motion.p>
+
+
+              <motion.div
+                className="home-hero-actions"
+                initial={{
+                  opacity: 0,
+                  y: 20,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  duration: .8,
+                  delay: .5,
                   ease,
                 }}
               >
 
                 <NavLink
                   to="/courses"
-                  className="hero-primary-btn"
+                  className="premium-blue-button"
                 >
                   <span>
-                    Explore technology
+                    Explore the academy
                   </span>
 
-                  <span className="hero-btn-arrow">
+                  <strong>
                     ↗
-                  </span>
+                  </strong>
                 </NavLink>
 
 
                 <NavLink
                   to="/contact"
-                  className="hero-secondary-btn"
+                  className="premium-text-button"
                 >
                   Start a project
+                  <span>→</span>
                 </NavLink>
 
               </motion.div>
 
 
-              {/* SMALL STATS */}
+              {/* HERO DATA */}
 
               <motion.div
-                className="hero-mini-stats"
+                className="hero-data-row"
                 initial={{
                   opacity: 0,
                 }}
@@ -169,30 +178,27 @@ export default function Home() {
                   opacity: 1,
                 }}
                 transition={{
-                  duration: 1,
-                  delay: 0.8,
+                  duration: .8,
+                  delay: .7,
                 }}
               >
 
                 <div>
-                  <strong>01</strong>
-                  <span>
-                    Learn
-                  </span>
+                  <span>01</span>
+                  <strong>LEARN</strong>
+                  <small>Industry-focused training</small>
                 </div>
 
                 <div>
-                  <strong>02</strong>
-                  <span>
-                    Build
-                  </span>
+                  <span>02</span>
+                  <strong>BUILD</strong>
+                  <small>Projects & digital systems</small>
                 </div>
 
                 <div>
-                  <strong>03</strong>
-                  <span>
-                    Deploy
-                  </span>
+                  <span>03</span>
+                  <strong>DEPLOY</strong>
+                  <small>Technology that works</small>
                 </div>
 
               </motion.div>
@@ -200,22 +206,22 @@ export default function Home() {
             </div>
 
 
-            {/* HERO IMAGE */}
+            {/* RIGHT VISUAL */}
 
-            <HeroImage />
+            <HeroVisual />
 
           </div>
 
         </div>
 
 
-        {/* BOTTOM MARQUEE */}
+        {/* TECH TICKER */}
 
-        <div className="hero-tech-strip">
+        <div className="hero-ticker">
 
-          <div className="tech-marquee">
+          <div className="hero-ticker-track">
 
-            {[
+            {[...Array(2)].flatMap(() => [
               'FULL STACK',
               'PYTHON',
               'FLUTTER',
@@ -225,11 +231,17 @@ export default function Home() {
               'DATA',
               'AUTOMATION',
               'DATABASES',
-            ].map((item, index) => (
+              'IT SOLUTIONS',
+            ]).map((item, index) => (
+
               <span key={index}>
+
                 {item}
-                <b>✦</b>
+
+                <i>✦</i>
+
               </span>
+
             ))}
 
           </div>
@@ -239,48 +251,59 @@ export default function Home() {
       </section>
 
 
-
       {/* =====================================================
           INTRO
       ===================================================== */}
 
-      <section className="intro-section">
+      <section className="home-intro">
 
         <div className="container">
 
-          <Reveal className="intro-layout">
+          <Reveal className="intro-editorial">
 
-            <div className="intro-number">
-              01
+            <div className="intro-side">
+
+              <span>
+                01
+              </span>
+
+              <small>
+                THE IDEA
+              </small>
+
             </div>
 
-            <div className="intro-content">
 
-              <span className="section-kicker">
-                THE PLANET IIT APPROACH
+            <div className="intro-main">
+
+              <span className="blue-kicker">
+                A TECHNOLOGY-FIRST ORGANISATION
               </span>
 
               <h2>
-                Not just courses.
+                More than a
                 <br />
-                <span>A place to build.</span>
+                <em>training centre.</em>
               </h2>
 
-              <p>
-                Technology changes quickly. Memorising a
-                syllabus doesn't prepare you for that.
+              <p className="intro-lead">
+                Planet IIT connects learning with implementation.
+                Students work around modern technologies while
+                businesses get access to practical digital solutions.
               </p>
 
               <p>
-                Planet IIT focuses on practical technology —
-                from programming and web development to
-                artificial intelligence, embedded systems,
-                IoT, robotics, data and automation.
+                From software development and mobile applications
+                to artificial intelligence, embedded systems,
+                IoT, robotics, databases and automation —
+                technology is treated as something to understand,
+                build and use.
               </p>
+
 
               <NavLink
                 to="/about"
-                className="text-link"
+                className="editorial-link"
               >
                 Discover Planet IIT
                 <span>↗</span>
@@ -295,61 +318,72 @@ export default function Home() {
       </section>
 
 
-
       {/* =====================================================
-          TWO WORLDS
+          TWO SIDES
       ===================================================== */}
 
-      <section className="worlds-section">
+      <section className="home-worlds">
 
         <div className="container">
 
-          <Reveal className="section-heading-wide">
+          <Reveal className="world-heading">
 
-            <span className="section-kicker">
-              02 / TWO SIDES OF THE SAME SYSTEM
+            <span className="blue-kicker">
+              02 / ONE ORGANISATION
             </span>
 
             <h2>
-              Learn from technology.
+              Learn technology.
               <br />
-              <span>Build with technology.</span>
+              <span>Apply technology.</span>
             </h2>
 
           </Reveal>
 
 
-          <div className="worlds-grid">
+          <div className="world-layout">
 
             {/* ACADEMY */}
 
             <Reveal
-              className="world-card world-academy"
-              delay={0.05}
+              className="world-large-card"
+              delay={.05}
             >
 
               <div className="world-image">
 
                 <img
                   src={studentsImage}
-                  alt="Students learning technology at Planet IIT"
+                  alt="Students learning technology and robotics at Planet IIT"
                   loading="lazy"
                 />
 
-                <div className="image-overlay" />
+                <div className="world-image-shade" />
+
+                <span className="image-number">
+                  01
+                </span>
 
                 <span className="image-label">
-                  ACADEMY / 01
+                  TECH ACADEMY
                 </span>
 
               </div>
 
 
-              <div className="world-content">
+              <div className="world-card-content">
 
-                <span className="world-number">
-                  01
-                </span>
+                <div className="world-card-top">
+
+                  <span>
+                    EDUCATION
+                  </span>
+
+                  <span>
+                    01 / 02
+                  </span>
+
+                </div>
 
                 <h3>
                   Technology
@@ -358,24 +392,27 @@ export default function Home() {
                 </h3>
 
                 <p>
-                  Learn modern technologies through
-                  practical training, projects and
-                  technology-focused academic support.
+                  Practical learning across full-stack
+                  development, mobile engineering, AI,
+                  machine learning, embedded systems,
+                  IoT and robotics.
                 </p>
 
-                <div className="world-tags">
+
+                <div className="world-tech-list">
 
                   <span>FULL STACK</span>
                   <span>PYTHON</span>
                   <span>FLUTTER</span>
                   <span>AI / ML</span>
-                  <span>IOT</span>
+                  <span>ROBOTICS</span>
 
                 </div>
 
+
                 <NavLink
                   to="/courses"
-                  className="world-link"
+                  className="world-editorial-link"
                 >
                   Explore courses
                   <span>↗</span>
@@ -386,65 +423,81 @@ export default function Home() {
             </Reveal>
 
 
-            {/* IT SOLUTIONS */}
+            {/* SOLUTIONS */}
 
             <Reveal
-              className="world-card world-solutions"
-              delay={0.15}
+              className="world-large-card world-card-offset"
+              delay={.15}
             >
 
               <div className="world-image">
 
                 <img
                   src={codingImage}
-                  alt="Software development and technology solutions"
+                  alt="Software development and IT solutions"
                   loading="lazy"
                 />
 
-                <div className="image-overlay" />
+                <div className="world-image-shade" />
+
+                <span className="image-number">
+                  02
+                </span>
 
                 <span className="image-label">
-                  SOLUTIONS / 02
+                  IT SOLUTIONS
                 </span>
 
               </div>
 
 
-              <div className="world-content">
+              <div className="world-card-content">
 
-                <span className="world-number">
-                  02
-                </span>
+                <div className="world-card-top">
+
+                  <span>
+                    BUSINESS
+                  </span>
+
+                  <span>
+                    02 / 02
+                  </span>
+
+                </div>
 
                 <h3>
-                  IT
+                  Digital
                   <br />
                   Solutions
                 </h3>
 
                 <p>
-                  From software and automation to data
-                  and database solutions, we help turn
-                  business requirements into technology.
+                  Websites, applications, automation,
+                  data systems and technology solutions
+                  designed around real business requirements.
                 </p>
 
-                <div className="world-tags">
+
+                <div className="world-tech-list">
 
                   {enterpriseServices
-                    .slice(0, 5)
+                    .slice(0, 4)
                     .map((service) => (
+
                       <span key={service.index}>
                         {service.title}
                       </span>
+
                     ))}
 
                 </div>
 
+
                 <NavLink
                   to="/contact"
-                  className="world-link"
+                  className="world-editorial-link"
                 >
-                  Discuss your idea
+                  Discuss a project
                   <span>↗</span>
                 </NavLink>
 
@@ -459,77 +512,80 @@ export default function Home() {
       </section>
 
 
-
       {/* =====================================================
-          IMAGE / STATEMENT SECTION
+          IMAGE STATEMENT
       ===================================================== */}
 
       <TechnologyStatement />
 
 
-
       {/* =====================================================
-          TECHNOLOGY ARENA
+          COURSES
       ===================================================== */}
 
-      <section className="technology-section">
+      <section className="home-programs">
 
         <div className="container">
 
-          <Reveal className="section-heading-wide">
+          <Reveal className="program-heading">
 
-            <span className="section-kicker">
-              04 / TECHNOLOGY ARENA
-            </span>
+            <div>
 
-            <h2>
-              From the first
-              <br />
-              <span>line of code.</span>
-            </h2>
+              <span className="blue-kicker">
+                04 / TECH ACADEMY
+              </span>
+
+              <h2>
+                Choose your
+                <br />
+                <span>direction.</span>
+              </h2>
+
+            </div>
+
+            <p>
+              Structured technology tracks for students,
+              graduates and working professionals.
+            </p>
 
           </Reveal>
 
 
-          <div className="technology-grid">
+          <div className="program-list">
 
             {courseCategories.map((course, index) => (
 
               <Reveal
                 key={course.slug}
-                delay={index * 0.06}
+                delay={index * .08}
               >
 
                 <NavLink
                   to={`/courses/${course.slug}`}
-                  className="technology-card"
+                  className="program-row"
                 >
 
-                  <div className="technology-card-top">
+                  <span className="program-number">
+                    {course.index}
+                  </span>
 
-                    <span>
-                      {course.index}
-                    </span>
 
-                    <span className="technology-arrow">
-                      ↗
-                    </span>
+                  <div className="program-name">
+
+                    <h3>
+                      {course.title}
+                    </h3>
+
+                    <p>
+                      {course.tagline}
+                    </p>
 
                   </div>
 
-                  <h3>
-                    {course.title}
-                  </h3>
 
-                  <p>
-                    {course.tagline}
-                  </p>
-
-                  <div className="technology-line" />
-
-                  <span className="technology-explore">
-                    VIEW PROGRAM
-                  </span>
+                  <div className="program-arrow">
+                    ↗
+                  </div>
 
                 </NavLink>
 
@@ -544,44 +600,39 @@ export default function Home() {
       </section>
 
 
-
       {/* =====================================================
-          ROBOTICS / DEEP TECH
+          DEEP TECHNOLOGY
       ===================================================== */}
 
-      <section className="deep-tech-section">
+      <section className="home-deep-tech">
 
-        <div className="deep-tech-grid" />
+        <div className="deep-blue-field" />
 
         <div className="container">
 
-          <div className="deep-tech-layout">
+          <div className="deep-layout">
 
-            <Reveal className="deep-tech-image">
+            <Reveal className="deep-image">
 
               <img
                 src={roboticsImage}
-                alt="Robotics and embedded technology"
+                alt="Robotics and embedded systems training"
                 loading="lazy"
               />
 
-              <div className="deep-tech-image-overlay" />
+              <div className="deep-image-overlay" />
 
-              <div className="floating-tech-card">
+              <div className="deep-image-caption">
 
                 <span>
-                  SYSTEM / 04
+                  PLANET IIT / LAB
                 </span>
 
                 <strong>
-                  EMBEDDED
+                  HARDWARE
                   <br />
-                  + ROBOTICS
+                  × SOFTWARE
                 </strong>
-
-                <small>
-                  HARDWARE × SOFTWARE
-                </small>
 
               </div>
 
@@ -589,40 +640,39 @@ export default function Home() {
 
 
             <Reveal
-              className="deep-tech-content"
-              delay={0.15}
+              className="deep-content"
+              delay={.15}
             >
 
-              <span className="section-kicker">
+              <span className="blue-kicker">
                 05 / DEEP TECHNOLOGY
               </span>
 
               <h2>
-                Where
-                <br />
-                software
+                Where code
                 <br />
                 meets the
-                <span>physical world.</span>
+                <span>
+                   physical world.
+                </span>
               </h2>
 
               <p>
                 Embedded systems, IoT, robotics and
-                machine learning sit at the intersection
-                of code, electronics and intelligent
-                systems.
+                machine learning bring software into
+                the physical world.
               </p>
 
               <p>
-                It's an area where learning becomes
-                tangible — sensors, controllers, circuits,
-                devices and machines responding to the
-                software behind them.
+                This is where technology becomes tangible:
+                sensors, controllers, devices, data and
+                intelligent systems working together.
               </p>
+
 
               <NavLink
                 to="/courses/advanced-tech-analytics"
-                className="outline-link"
+                className="deep-link"
               >
                 Explore advanced technology
                 <span>↗</span>
@@ -637,62 +687,61 @@ export default function Home() {
       </section>
 
 
-
       {/* =====================================================
           PROCESS
       ===================================================== */}
 
-      <section className="process-section">
+      <section className="home-process">
 
         <div className="container">
 
-          <Reveal className="section-heading-wide">
+          <Reveal className="process-heading">
 
-            <span className="section-kicker">
-              06 / HOW WE WORK
+            <span className="blue-kicker">
+              06 / OUR METHOD
             </span>
 
             <h2>
-              Ideas don't stay
+              From idea
               <br />
-              <span>on paper.</span>
+              <span>to execution.</span>
             </h2>
 
           </Reveal>
 
 
-          <div className="process-grid">
+          <div className="process-line">
 
             {[
               {
                 number: '01',
                 title: 'Understand',
-                text: 'Start with the problem, requirement or learning goal.'
+                text: 'Start with the problem, requirement or learning goal.',
               },
               {
                 number: '02',
                 title: 'Design',
-                text: 'Choose the right technology, architecture and approach.'
+                text: 'Choose the right technology, architecture and approach.',
               },
               {
                 number: '03',
                 title: 'Build',
-                text: 'Turn concepts into working projects and practical systems.'
+                text: 'Turn concepts into working projects and practical systems.',
               },
               {
                 number: '04',
                 title: 'Evolve',
-                text: 'Test, improve and keep moving with technology.'
+                text: 'Test, improve and keep moving with technology.',
               },
             ].map((item, index) => (
 
               <Reveal
                 key={item.number}
-                delay={index * 0.08}
-                className="process-item"
+                delay={index * .08}
+                className="process-step"
               >
 
-                <span className="process-number">
+                <span>
                   {item.number}
                 </span>
 
@@ -705,9 +754,7 @@ export default function Home() {
                 </p>
 
                 {index < 3 && (
-                  <span className="process-connector">
-                    →
-                  </span>
+                  <i>→</i>
                 )}
 
               </Reveal>
@@ -721,40 +768,41 @@ export default function Home() {
       </section>
 
 
-
       {/* =====================================================
           FINAL CTA
       ===================================================== */}
 
-      <section className="final-cta">
+      <section className="home-final">
 
-        <div className="final-cta-glow" />
+        <div className="final-orbit" />
 
         <div className="container">
 
-          <Reveal className="final-cta-inner">
+          <Reveal className="final-content">
 
-            <span className="section-kicker">
-              READY WHEN YOU ARE
+            <span className="blue-kicker">
+              PLANET IIT / NEXT STEP
             </span>
 
             <h2>
               Have an idea?
               <br />
-              <span>Let's make it real.</span>
+              <span>
+                Let's build it.
+              </span>
             </h2>
 
             <p>
-              Looking to learn technology, develop a
-              project or find an IT solution for your
-              business?
+              Looking to learn technology, develop a project
+              or find the right IT solution for your business?
             </p>
+
 
             <div className="final-actions">
 
               <NavLink
                 to="/contact"
-                className="final-primary"
+                className="final-blue-button"
               >
                 Start a conversation
                 <span>↗</span>
@@ -762,7 +810,7 @@ export default function Home() {
 
               <NavLink
                 to="/courses"
-                className="final-secondary"
+                className="final-outline-button"
               >
                 Explore courses
               </NavLink>
@@ -781,14 +829,16 @@ export default function Home() {
 
 
 /* ============================================================
-   HERO IMAGE
+   HERO VISUAL
    ============================================================ */
 
-function HeroImage() {
+function HeroVisual() {
 
   const ref = useRef(null)
 
-  const { scrollYProgress } = useScroll({
+  const {
+    scrollYProgress,
+  } = useScroll({
     target: ref,
     offset: ['start end', 'end start'],
   })
@@ -796,18 +846,18 @@ function HeroImage() {
   const y = useTransform(
     scrollYProgress,
     [0, 1],
-    [40, -40]
+    [45, -45]
   )
 
   return (
 
     <motion.div
       ref={ref}
-      className="hero-visual"
+      className="hero-visual-light"
       initial={{
         opacity: 0,
-        scale: 0.94,
-        x: 30,
+        scale: .94,
+        x: 35,
       }}
       animate={{
         opacity: 1,
@@ -815,58 +865,93 @@ function HeroImage() {
         x: 0,
       }}
       transition={{
-        duration: 1.2,
-        delay: 0.3,
+        duration: 1.1,
+        delay: .25,
         ease,
       }}
     >
 
       <motion.div
-        className="hero-image-wrap"
+        className="hero-photo"
         style={{ y }}
       >
 
         <img
           src={heroImage}
-          alt="Planet IIT technology laboratory"
+          alt="Planet IIT technology and learning environment"
         />
 
-        <div className="hero-image-gradient" />
+        <div className="hero-photo-gradient" />
 
-        <div className="hero-image-grid" />
+        <div className="hero-photo-frame" />
 
       </motion.div>
 
 
-      {/* Floating coordinates */}
+      {/* Floating data */}
 
-      <div className="hero-coordinate coordinate-one">
-        <span>LAT</span>
-        <strong>09.49°</strong>
-      </div>
+      <motion.div
+        className="hero-floating-card hero-floating-top"
+        animate={{
+          y: [0, -7, 0],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+      >
 
-      <div className="hero-coordinate coordinate-two">
-        <span>NODE</span>
-        <strong>PLN / 01</strong>
-      </div>
-
-
-      {/* Floating tech signal */}
-
-      <div className="hero-signal">
-
-        <span className="signal-dot" />
+        <span className="floating-dot" />
 
         <div>
+
           <small>
-            ACTIVE SYSTEM
+            ACTIVE FIELD
+          </small>
+
+          <strong>
+            TECHNOLOGY
+          </strong>
+
+        </div>
+
+      </motion.div>
+
+
+      <motion.div
+        className="hero-floating-card hero-floating-bottom"
+        animate={{
+          y: [0, 7, 0],
+        }}
+        transition={{
+          duration: 4.5,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+      >
+
+        <span>
+          01
+        </span>
+
+        <div>
+
+          <small>
+            PLANET IIT
           </small>
 
           <strong>
             LEARN / BUILD
           </strong>
+
         </div>
 
+      </motion.div>
+
+
+      <div className="hero-vertical-label">
+        TECHNOLOGY • EDUCATION • SOLUTIONS
       </div>
 
     </motion.div>
@@ -875,14 +960,16 @@ function HeroImage() {
 
 
 /* ============================================================
-   TECHNOLOGY STATEMENT
+   IMAGE STATEMENT
    ============================================================ */
 
 function TechnologyStatement() {
 
   const ref = useRef(null)
 
-  const { scrollYProgress } = useScroll({
+  const {
+    scrollYProgress,
+  } = useScroll({
     target: ref,
     offset: ['start end', 'end start'],
   })
@@ -890,18 +977,18 @@ function TechnologyStatement() {
   const y = useTransform(
     scrollYProgress,
     [0, 1],
-    [80, -80]
+    [70, -70]
   )
 
   return (
 
     <section
       ref={ref}
-      className="statement-section"
+      className="technology-statement"
     >
 
       <motion.div
-        className="statement-image"
+        className="statement-photo"
         style={{ y }}
       >
 
@@ -911,31 +998,31 @@ function TechnologyStatement() {
           loading="lazy"
         />
 
-        <div />
-
       </motion.div>
+
+
+      <div className="statement-shade" />
 
 
       <div className="container">
 
-        <Reveal className="statement-content">
+        <Reveal className="statement-inner">
 
-          <span className="statement-index">
+          <span>
             03
           </span>
 
           <h2>
             The distance between
             <br />
-            <span>learning and doing</span>
+            <em>learning and doing</em>
             <br />
-            should be zero.
+            should be small.
           </h2>
 
           <p>
-            That's why our approach connects technology
-            education with practical projects, real tools
-            and problem-solving.
+            That's why Planet IIT brings practical
+            technology into both sides of the organisation.
           </p>
 
         </Reveal>

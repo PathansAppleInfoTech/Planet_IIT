@@ -1,10 +1,11 @@
-import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { useRef, useState } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { NavLink } from 'react-router-dom'
 
 import Reveal from '../components/Reveal.jsx'
 
 import contactImage from '../assets/contact-hero.png'
+
 import './Contact.css'
 
 const SUBJECTS = [
@@ -16,25 +17,26 @@ const SUBJECTS = [
   'Something else',
 ]
 
-
 const CONTACT_OPTIONS = [
   {
     number: '01',
     title: 'Build with us',
-    text: 'Have a software, automation, data or technology requirement?',
+    text:
+      'Have a software, automation, data or technology requirement?',
   },
   {
     number: '02',
     title: 'Learn with us',
-    text: 'Looking for a course, practical training or technical guidance?',
+    text:
+      'Looking for a course, practical training or technical guidance?',
   },
   {
     number: '03',
     title: 'Work on an idea',
-    text: 'Need help turning an academic or technical idea into a working project?',
+    text:
+      'Need help turning an academic or technical idea into a working project?',
   },
 ]
-
 
 export default function Contact() {
 
@@ -48,7 +50,6 @@ export default function Contact() {
 
   const [status, setStatus] = useState('idle')
 
-
   const update = (key) => (e) => {
     setForm((current) => ({
       ...current,
@@ -56,14 +57,12 @@ export default function Contact() {
     }))
   }
 
-
   const onSubmit = (e) => {
     e.preventDefault()
 
     // Backend/email service can be connected here later.
     setStatus('sent')
   }
-
 
   return (
     <main className="contact-page">
@@ -75,7 +74,6 @@ export default function Contact() {
       <section className="contact-hero">
 
         <div className="contact-grid-bg" />
-
         <div className="contact-hero-glow" />
 
         <div className="container">
@@ -85,28 +83,22 @@ export default function Contact() {
             <Reveal className="contact-hero-content">
 
               <div className="contact-kicker">
-
                 <span />
-
                 PLANET IIT / CONTACT
-
               </div>
-
 
               <h1>
                 Let's start
                 <br />
                 with the
-                <span> idea.</span>
+                <em> idea.</em>
               </h1>
-
 
               <p>
                 Whether you're looking to learn technology,
                 build a project or solve a business problem,
                 tell us where you want to go.
               </p>
-
 
               <div className="contact-hero-meta">
 
@@ -130,58 +122,15 @@ export default function Contact() {
             </Reveal>
 
 
-            <Reveal
-              className="contact-hero-visual"
-              delay={0.15}
-            >
-
-              <div className="contact-hero-image">
-
-                <img
-                  src={contactImage}
-                  alt="Planet IIT technology environment"
-                />
-
-                <div className="contact-image-overlay" />
-
-                <div className="contact-image-lines" />
-
-              </div>
-
-
-              <div className="contact-system-card">
-
-                <span className="contact-system-dot" />
-
-                <div>
-
-                  <small>
-                    CONNECTION STATUS
-                  </small>
-
-                  <strong>
-                    OPEN FOR ENQUIRIES
-                  </strong>
-
-                </div>
-
-              </div>
-
-
-              <div className="contact-coordinate">
-
-                <span>NODE</span>
-
-                <strong>
-                  PLN / 03
-                </strong>
-
-              </div>
-
-            </Reveal>
+            <ContactHeroVisual />
 
           </div>
 
+        </div>
+
+        <div className="contact-scroll">
+          <span>SCROLL TO CONNECT</span>
+          <i />
         </div>
 
       </section>
@@ -197,20 +146,21 @@ export default function Contact() {
 
           <Reveal className="contact-section-heading">
 
-            <span className="section-kicker">
-              01 / START HERE
-            </span>
+            <div className="section-heading-meta">
+              <span>01</span>
+              <span>START HERE</span>
+            </div>
 
             <h2>
               What are you
               <br />
-              <span>working on?</span>
+              <em>working on?</em>
             </h2>
 
           </Reveal>
 
 
-          <div className="contact-options-grid">
+          <div className="contact-options-list">
 
             {CONTACT_OPTIONS.map((item, index) => (
 
@@ -248,7 +198,7 @@ export default function Contact() {
 
 
       {/* =====================================================
-          MAIN CONTACT AREA
+          MAIN CONTACT
       ===================================================== */}
 
       <section className="contact-main-section">
@@ -257,19 +207,21 @@ export default function Contact() {
 
           <div className="contact-main-grid">
 
-
-            {/* LEFT INFORMATION */}
+            {/* =================================================
+                DETAILS
+            ================================================= */}
 
             <Reveal className="contact-details">
 
-              <span className="section-kicker">
-                02 / DIRECT CONNECTION
-              </span>
+              <div className="section-heading-meta">
+                <span>02</span>
+                <span>DIRECT CONNECTION</span>
+              </div>
 
               <h2>
                 Tell us
                 <br />
-                <span>what you need.</span>
+                <em>what you need.</em>
               </h2>
 
               <p className="contact-details-intro">
@@ -287,15 +239,11 @@ export default function Contact() {
                   </span>
 
                   <div>
+                    <small>EMAIL</small>
 
-                    <small>
-                      EMAIL
-                    </small>
-
-                    <a href="mailto:Info@planetiit.com">
+                    <a href="mailto:info@planetiit.com">
                       info@planetiit.com
                     </a>
-
                   </div>
 
                 </div>
@@ -308,15 +256,13 @@ export default function Contact() {
                   </span>
 
                   <div>
-
-                    <small>
-                      LOCATION
-                    </small>
+                    <small>LOCATION</small>
 
                     <strong>
-                      Near Aruvithura Akshaya Center Erattupetta , Kottayam District Kerala India Pin 686122
+                      Near Aruvithura Akshaya Center,
+                      Erattupetta, Kottayam District,
+                      Kerala, India — 686122
                     </strong>
-
                   </div>
 
                 </div>
@@ -329,16 +275,11 @@ export default function Contact() {
                   </span>
 
                   <div>
-
-                    <small>
-                      AVAILABILITY
-                    </small>
+                    <small>AVAILABILITY</small>
 
                     <strong>
-                      On-site 
-                      {/* &amp; Remote */}
+                      On-site
                     </strong>
-
                   </div>
 
                 </div>
@@ -362,7 +303,9 @@ export default function Contact() {
             </Reveal>
 
 
-            {/* FORM */}
+            {/* =================================================
+                FORM
+            ================================================= */}
 
             <Reveal
               className="contact-form-wrapper"
@@ -375,6 +318,7 @@ export default function Contact() {
                   email={form.email}
                   onReset={() => {
                     setStatus('idle')
+
                     setForm({
                       name: '',
                       email: '',
@@ -395,7 +339,6 @@ export default function Contact() {
                   <div className="form-top">
 
                     <div>
-
                       <span>
                         CONTACT FORM
                       </span>
@@ -403,7 +346,6 @@ export default function Contact() {
                       <strong>
                         PROJECT / ENQUIRY
                       </strong>
-
                     </div>
 
                     <span className="form-code">
@@ -491,7 +433,6 @@ export default function Contact() {
                       value={form.subject}
                       onChange={update('subject')}
                     >
-
                       {SUBJECTS.map((subject) => (
                         <option
                           key={subject}
@@ -500,7 +441,6 @@ export default function Contact() {
                           {subject}
                         </option>
                       ))}
-
                     </select>
 
                   </div>
@@ -531,7 +471,6 @@ export default function Contact() {
                     type="submit"
                     className="contact-submit"
                   >
-
                     <span>
                       Send enquiry
                     </span>
@@ -539,7 +478,6 @@ export default function Contact() {
                     <strong>
                       ↗
                     </strong>
-
                   </button>
 
 
@@ -570,25 +508,28 @@ export default function Contact() {
 
         <div className="contact-bottom-grid" />
 
+        <div className="contact-bottom-orbit orbit-one" />
+        <div className="contact-bottom-orbit orbit-two" />
+
         <div className="container">
 
           <Reveal className="contact-bottom-content">
 
-            <span className="section-kicker">
+            <div className="section-kicker">
               PLANET IIT / CONNECT
-            </span>
+            </div>
 
             <h2>
               Have a question?
               <br />
-              <span>Start the conversation.</span>
+              <em>Start the conversation.</em>
             </h2>
 
             <a
-              href="mailto:Info@planetiit.com"
+              href="mailto:info@planetiit.com"
               className="contact-email-button"
             >
-              Info@planetiit.com
+              info@planetiit.com
               <span>↗</span>
             </a>
 
@@ -604,22 +545,127 @@ export default function Contact() {
 
 
 /* ============================================================
+   HERO VISUAL
+   ============================================================ */
+
+function ContactHeroVisual() {
+
+  const ref = useRef(null)
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end start'],
+  })
+
+  const y = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [45, -45]
+  )
+
+  const scale = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [1.06, 1]
+  )
+
+  return (
+    <Reveal
+      className="contact-hero-visual"
+      delay={0.15}
+    >
+
+      <div
+        ref={ref}
+        className="contact-visual-wrap"
+      >
+
+        <motion.div
+          className="contact-hero-image"
+          style={{
+            y,
+            scale,
+          }}
+        >
+
+          <img
+            src={contactImage}
+            alt="Planet IIT technology environment"
+          />
+
+          <div className="contact-image-overlay" />
+
+          <div className="contact-image-lines" />
+
+        </motion.div>
+
+
+        <div className="contact-image-frame" />
+
+
+        <div className="contact-system-card">
+
+          <span className="contact-system-dot" />
+
+          <div>
+            <small>
+              CONNECTION STATUS
+            </small>
+
+            <strong>
+              OPEN FOR ENQUIRIES
+            </strong>
+          </div>
+
+        </div>
+
+
+        <div className="contact-coordinate">
+
+          <span>
+            NODE
+          </span>
+
+          <strong>
+            PLN / 03
+          </strong>
+
+        </div>
+
+      </div>
+
+    </Reveal>
+  )
+}
+
+
+/* ============================================================
    SUCCESS STATE
    ============================================================ */
 
-function ContactSuccess({ email, onReset }) {
+function ContactSuccess({
+  email,
+  onReset,
+}) {
 
   return (
 
     <motion.div
       className="contact-success-new"
+
       initial={{
         opacity: 0,
         y: 20,
       }}
+
       animate={{
         opacity: 1,
         y: 0,
+      }}
+
+      transition={{
+        duration: .5,
+        ease: [0.16, 1, 0.3, 1],
       }}
     >
 
