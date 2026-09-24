@@ -1,6 +1,5 @@
 import { useParams, NavLink, Navigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-
 import Reveal from '../components/Reveal.jsx'
 import { courseCategories, getCourseBySlug } from '../data/courses.js'
 
@@ -10,6 +9,7 @@ import advancedImage from '../assets/courses/advanced-tech.png'
 import academicImage from '../assets/courses/academic.png'
 
 import './CourseDetail.css'
+
 
 const COURSE_IMAGES = {
   'full-stack-web': fullStackImage,
@@ -57,7 +57,6 @@ export default function CourseDetail() {
   }
 
   const meta = COURSE_META[slug]
-
   const image = COURSE_IMAGES[slug]
 
   const others = courseCategories.filter(
@@ -76,8 +75,8 @@ export default function CourseDetail() {
       <section className="course-detail-hero">
 
         <div className="course-detail-grid" />
-
-        <div className="course-detail-glow" />
+        <div className="course-detail-glow course-detail-glow-one" />
+        <div className="course-detail-glow course-detail-glow-two" />
 
         <div className="container">
 
@@ -87,22 +86,24 @@ export default function CourseDetail() {
               to="/courses"
               className="course-detail-back"
             >
-              <span>←</span>
-              ALL PROGRAMS
+              <span className="back-icon">←</span>
+              <span>ALL PROGRAMS</span>
             </NavLink>
 
 
             <div className="course-detail-hero-layout">
 
+              {/* HERO CONTENT */}
+
               <div className="course-detail-hero-content">
 
                 <div className="course-detail-kicker">
 
-                  <span>
+                  <span className="course-index">
                     {course.index}
                   </span>
 
-                  {meta.category}
+                  <span>{meta.category}</span>
 
                 </div>
 
@@ -186,15 +187,16 @@ export default function CourseDetail() {
 
                   <div className="course-detail-image-grid" />
 
-
                   <span className="course-detail-image-index">
                     {course.index}
                   </span>
 
-
                   <span className="course-detail-image-label">
                     PLANET IIT / ACADEMY
                   </span>
+
+                  <div className="image-corner image-corner-top" />
+                  <div className="image-corner image-corner-bottom" />
 
                 </div>
 
@@ -229,22 +231,33 @@ export default function CourseDetail() {
 
 
       {/* =====================================================
-          TECHNOLOGY STACK
+          TECHNOLOGY FIELD
       ===================================================== */}
 
       <section className="course-tech-section">
+
+        <div className="tech-section-orbit" />
 
         <div className="container">
 
           <Reveal className="course-tech-header">
 
-            <span>
-              {course.index} / TECHNOLOGY FIELD
-            </span>
+            <div>
+
+              <span className="course-tech-label">
+                {course.index} / TECHNOLOGY FIELD
+              </span>
+
+              <h2>
+                The tools behind
+                <span> the work.</span>
+              </h2>
+
+            </div>
 
             <p>
-              Core areas covered throughout
-              this program.
+              Core technologies and practical areas
+              covered throughout this program.
             </p>
 
           </Reveal>
@@ -283,6 +296,8 @@ export default function CourseDetail() {
                   {tech}
                 </strong>
 
+                <div className="tech-item-line" />
+
               </motion.div>
 
             ))}
@@ -299,6 +314,8 @@ export default function CourseDetail() {
       ===================================================== */}
 
       <section className="course-curriculum">
+
+        <div className="curriculum-background-grid" />
 
         <div className="container">
 
@@ -352,7 +369,7 @@ export default function CourseDetail() {
 
           <Reveal className="course-outcome-layout">
 
-            <div>
+            <div className="course-outcome-heading">
 
               <span className="section-kicker">
                 {course.index} / THE APPROACH
@@ -369,7 +386,7 @@ export default function CourseDetail() {
 
             <div className="course-outcome-content">
 
-              <p>
+              <p className="outcome-intro">
                 Planet IIT's training approach connects
                 technical learning with practical
                 implementation, project work and
@@ -462,12 +479,13 @@ export default function CourseDetail() {
 
 
       {/* =====================================================
-          COURSE CTA
+          CTA
       ===================================================== */}
 
       <section className="course-detail-cta">
 
         <div className="course-detail-cta-grid" />
+        <div className="cta-blue-glow" />
 
         <div className="container">
 
@@ -553,20 +571,34 @@ export default function CourseDetail() {
                   className="course-other-card"
                 >
 
-                  <span>
-                    {other.index}
-                  </span>
+                  <div className="other-card-top">
 
-                  <h3>
-                    {other.title}
-                  </h3>
+                    <span>
+                      {other.index}
+                    </span>
 
-                  <p>
-                    {other.tagline}
-                  </p>
+                    <span className="other-card-arrow">
+                      ↗
+                    </span>
+
+                  </div>
+
+
+                  <div className="other-card-content">
+
+                    <h3>
+                      {other.title}
+                    </h3>
+
+                    <p>
+                      {other.tagline}
+                    </p>
+
+                  </div>
+
 
                   <strong>
-                    Explore ↗
+                    Explore program
                   </strong>
 
                 </NavLink>
