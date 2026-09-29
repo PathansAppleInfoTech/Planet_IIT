@@ -433,7 +433,7 @@ export default function Home() {
                 "
               >
                 <img
-                  src="/src/assets/common/hero-coding.png"
+                  src="/assets/common/hero-coding.png"
                   alt="Close-up of a modern computer motherboard representing technology and engineering"
                   className="
                     h-full
@@ -476,7 +476,7 @@ export default function Home() {
                 "
               >
                 <img
-                  src="/src/assets/common/hero-robotics.png"
+                  src="/assets/common/hero-robotics.png"
                   alt="Technology professionals collaborating around a laptop"
                   className="
                     h-full
@@ -1362,7 +1362,7 @@ export default function Home() {
               "
             >
               <img
-                src="/src/assets/common/home-cta.png"
+                src="/assets/common/home-cta.png"
                 alt="Modern technology circuit board and electronic components"
                 className="
                   h-full
