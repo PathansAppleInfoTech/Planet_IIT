@@ -331,13 +331,20 @@ export default function Home() {
                 <a
                   href="/about"
                   className="
-                    group
+                     group
                     inline-flex
+                    h-13
                     items-center
-                    gap-2
+                    gap-3
+                    rounded-full
+                    bg-[#ffffff]
+                    px-6
                     text-sm
                     font-bold
-                    text-[#10243a]
+                    !text-[#0757a8]
+                    shadow-[0_15px_40px_rgba(7,87,168,0.2)]
+                    transition-all
+                    duration-300
                   "
                 >
                   Discover Planet IIT
