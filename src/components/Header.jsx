@@ -1,138 +1,276 @@
-import { useEffect, useState } from 'react'
-import { NavLink, Link } from 'react-router-dom'
-import { AnimatePresence, motion } from 'framer-motion'
-import logo from '../assets/logo-transparent.png'
-import './Header.css'
-const NAV = [
-  { label: 'Home', to: '/' },
-  { label: 'About', to: '/about' },
-  { label: 'Courses', to: '/courses' },
-  { label: 'Contact', to: '/contact' },
-]
+import { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import {
+  ArrowUpRight,
+  Menu,
+  X,
+} from "lucide-react";
+
+const navItems = [
+  {
+    label: "Home",
+    href: "/",
+  },
+  {
+    label: "About",
+    href: "/about",
+  },
+  {
+    label: "Courses",
+    href: "/courses",
+  },
+  {
+    label: "Contact",
+    href: "/contact",
+  },
+];
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 30)
-    }
-
-    handleScroll()
-
-    window.addEventListener('scroll', handleScroll, {
-      passive: true,
-    })
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
-
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
-
-    return () => {
-      document.body.style.overflow = ''
-    }
-  }, [menuOpen])
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <>
-      <header
-        className={`site-header ${scrolled ? 'site-header-scrolled' : ''
-          }`}
+      <motion.header
+        initial={{
+          y: -30,
+          opacity: 0,
+        }}
+        animate={{
+          y: 0,
+          opacity: 1,
+        }}
+        transition={{
+          duration: 0.8,
+          ease: [0.16, 1, 0.3, 1],
+        }}
+        className="
+          fixed
+          left-0
+          right-0
+          top-0
+          z-[100]
+          px-4
+          pt-4
+          sm:px-6
+          lg:px-8
+        "
       >
-        <div className="header-shell">
-
-          {/* Brand */}
-          <Link
-            to="/"
-            className="brand"
-            onClick={() => setMenuOpen(false)}
+        <div
+          className="
+            mx-auto
+            flex
+            h-[74px]
+            max-w-[1400px]
+            items-center
+            justify-between
+            rounded-full
+            border
+            border-slate-200/80
+            bg-white/90
+            px-4
+            shadow-[0_12px_45px_rgba(8,53,94,0.07)]
+            backdrop-blur-xl
+            sm:px-5
+            lg:px-6
+          "
+        >
+          {/* Logo */}
+          <a
+            href="/"
+            aria-label="Planet IIT Home"
+            className="
+              group
+              flex
+              shrink-0
+              items-center
+            "
           >
-            <div className="brand-logo-wrap">
-              <img
-                src={logo}
-                alt="Planet IIT logo"
-                className="brand-logo"
-              />
-
-              <span className="brand-logo-ring" />
-            </div>
-
-            <div className="brand-copy">
-              <span className="brand-name">
-                PLANET <span>IIT</span>
-              </span>
-
-              <span className="brand-tagline">
-                INSTITUTE & INFORMATION TECHNOLOGY
-              </span>
-            </div>
-          </Link>
+            <img
+              src="/assets/logo-transparent.png"
+              alt="Planet IIT - Planet Institute and Information Technology"
+              className="
+                h-[52px]
+                w-auto
+                object-contain
+                transition-transform
+                duration-500
+                group-hover:scale-[1.04]
+              "
+            />
+          </a>
 
           {/* Desktop Navigation */}
           <nav
-            className="desktop-navigation"
             aria-label="Main navigation"
+            className="
+              hidden
+              items-center
+              gap-1
+              lg:flex
+            "
           >
-            {NAV.map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                className={({ isActive }) =>
-                  `desktop-nav-link ${isActive ? 'active' : ''
-                  }`
-                }
+            {navItems.map((item, index) => (
+              <a
+                key={item.label}
+                href={item.href}
+                className="
+                  group
+                  relative
+                  flex
+                  h-11
+                  items-center
+                  px-5
+                  text-[14px]
+                  font-semibold
+                  tracking-[-0.01em]
+                  text-slate-600
+                  transition-colors
+                  duration-300
+                  hover:text-[#0757a8]
+                "
               >
-                <span>{item.label}</span>
-              </NavLink>
+                <span className="relative z-10">
+                  {item.label}
+                </span>
+
+                <span
+                  className="
+                    absolute
+                    bottom-1.5
+                    left-1/2
+                    h-[2px]
+                    w-0
+                    -translate-x-1/2
+                    rounded-full
+                    bg-[#0757a8]
+                    transition-all
+                    duration-300
+                    group-hover:w-5
+                  "
+                />
+              </a>
             ))}
           </nav>
 
-          {/* Header CTA */}
-          <div className="header-actions">
-            <Link
-              to="/contact"
-              className="header-cta"
+          {/* Right side */}
+          <div className="flex items-center gap-2">
+            {/* Contact CTA */}
+            <a
+              href="/contact"
+              className="
+  group
+  hidden
+  h-11
+  items-center
+  gap-2
+  rounded-full
+  bg-[#0757a8]
+  px-5
+  text-[13px]
+  font-bold
+  tracking-wide
+  !text-white
+  shadow-[0_8px_25px_rgba(7,87,168,0.18)]
+  transition-all
+  duration-300
+  hover:bg-[#043b78]
+  hover:!text-white
+  hover:shadow-[0_12px_32px_rgba(7,87,168,0.25)]
+  lg:flex
+"
             >
-              <span>Let's Talk</span>
+              Start a Conversation
 
-              <span className="cta-arrow">
-                ↗
-              </span>
-            </Link>
+              <ArrowUpRight
+                size={16}
+                strokeWidth={2.2}
+                className="
+                  transition-transform
+                  duration-300
+                  group-hover:translate-x-0.5
+                  group-hover:-translate-y-0.5
+                "
+              />
+            </a>
+
+            {/* Mobile Menu Button */}
+            <button
+              type="button"
+              aria-label={
+                mobileOpen
+                  ? "Close navigation"
+                  : "Open navigation"
+              }
+              aria-expanded={mobileOpen}
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="
+                flex
+                h-11
+                w-11
+                items-center
+                justify-center
+                rounded-full
+                border
+                border-slate-200
+                text-slate-700
+                transition-all
+                duration-300
+                hover:border-[#0757a8]/30
+                hover:text-[#0757a8]
+                lg:hidden
+              "
+            >
+              <AnimatePresence mode="wait">
+                {mobileOpen ? (
+                  <motion.span
+                    key="close"
+                    initial={{
+                      rotate: -90,
+                      opacity: 0,
+                    }}
+                    animate={{
+                      rotate: 0,
+                      opacity: 1,
+                    }}
+                    exit={{
+                      rotate: 90,
+                      opacity: 0,
+                    }}
+                  >
+                    <X size={20} />
+                  </motion.span>
+                ) : (
+                  <motion.span
+                    key="menu"
+                    initial={{
+                      rotate: 90,
+                      opacity: 0,
+                    }}
+                    animate={{
+                      rotate: 0,
+                      opacity: 1,
+                    }}
+                    exit={{
+                      rotate: -90,
+                      opacity: 0,
+                    }}
+                  >
+                    <Menu size={20} />
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </button>
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            type="button"
-            className={`mobile-menu-button ${menuOpen ? 'open' : ''
-              }`}
-            onClick={() => setMenuOpen((value) => !value)}
-            aria-label={
-              menuOpen
-                ? 'Close navigation'
-                : 'Open navigation'
-            }
-            aria-expanded={menuOpen}
-          >
-            <span />
-            <span />
-          </button>
         </div>
-      </header>
+      </motion.header>
 
       {/* Mobile Navigation */}
       <AnimatePresence>
-        {menuOpen && (
+        {mobileOpen && (
           <motion.div
-            className="mobile-navigation"
             initial={{
               opacity: 0,
-              y: -30,
+              y: -20,
             }}
             animate={{
               opacity: 1,
@@ -140,77 +278,97 @@ export default function Header() {
             }}
             exit={{
               opacity: 0,
-              y: -30,
+              y: -20,
             }}
             transition={{
               duration: 0.35,
               ease: [0.16, 1, 0.3, 1],
             }}
+            className="
+              fixed
+              inset-x-4
+              top-[98px]
+              z-[99]
+              overflow-hidden
+              rounded-[28px]
+              border
+              border-slate-200
+              bg-white
+              shadow-[0_25px_70px_rgba(8,53,94,0.14)]
+              lg:hidden
+            "
           >
-            <div className="mobile-nav-glow" />
+            <nav
+              aria-label="Mobile navigation"
+              className="p-3"
+            >
+              {navItems.map((item, index) => (
+                <motion.a
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setMobileOpen(false)}
+                  initial={{
+                    opacity: 0,
+                    x: -15,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    x: 0,
+                  }}
+                  transition={{
+                    delay: index * 0.05,
+                    duration: 0.35,
+                  }}
+                  className="
+                    flex
+                    items-center
+                    justify-between
+                    rounded-2xl
+                    px-5
+                    py-4
+                    text-[15px]
+                    font-semibold
+                    text-slate-700
+                    transition-colors
+                    hover:bg-[#0757a8]/5
+                    hover:text-[#0757a8]
+                  "
+                >
+                  <span>{item.label}</span>
 
-            <div className="mobile-nav-inner">
+                  <ArrowUpRight
+                    size={17}
+                    strokeWidth={1.8}
+                  />
+                </motion.a>
+              ))}
 
-              <div className="mobile-nav-label">
-                <span />
-                NAVIGATION
+              <div className="mt-2 border-t border-slate-100 pt-3">
+                <a
+                  href="/contact"
+                  onClick={() => setMobileOpen(false)}
+                  className="
+                    flex
+                    items-center
+                    justify-center
+                    gap-2
+                    rounded-2xl
+                    bg-[#0757a8]
+                    px-5
+                    py-4
+                    text-sm
+                    font-bold
+                    !text-white
+                  "
+                >
+                  Start a Conversation
+                  <ArrowUpRight size={17} />
+                </a>
               </div>
-
-              <nav>
-                {NAV.map((item, index) => (
-                  <motion.div
-                    key={item.to}
-                    initial={{
-                      opacity: 0,
-                      x: -20,
-                    }}
-                    animate={{
-                      opacity: 1,
-                      x: 0,
-                    }}
-                    transition={{
-                      delay: index * 0.07,
-                      duration: 0.35,
-                    }}
-                  >
-                    <NavLink
-                      to={item.to}
-                      onClick={() =>
-                        setMenuOpen(false)
-                      }
-                      className={({ isActive }) =>
-                        `mobile-nav-link ${isActive ? 'active' : ''
-                        }`
-                      }
-                    >
-                      <span className="mobile-nav-number">
-                        0{index + 1}
-                      </span>
-
-                      <span>
-                        {item.label}
-                      </span>
-
-                      <span className="mobile-nav-arrow">
-                        ↗
-                      </span>
-                    </NavLink>
-                  </motion.div>
-                ))}
-              </nav>
-
-              <Link
-                to="/contact"
-                className="mobile-contact-button"
-                onClick={() => setMenuOpen(false)}
-              >
-                Start a Conversation
-                <span>↗</span>
-              </Link>
-            </div>
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>
     </>
-  )
+  );
 }

@@ -1,588 +1,751 @@
-import { NavLink } from 'react-router-dom'
-import { motion } from 'framer-motion'
+// src/pages/Courses.jsx
 
-import Reveal from '../components/Reveal.jsx'
-import { courseCategories } from '../data/courses.js'
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import {
+  ArrowUpRight,
+  ChevronDown,
+  Code2,
+  Cpu,
+  Database,
+  GraduationCap,
+  Layers3,
+  Smartphone,
+  Sparkles,
+  Wrench,
+} from "lucide-react";
 
-import fullStackImage from '../assets/courses/full-stack.png'
-import mobileImage from '../assets/courses/mobile.png'
-import advancedImage from '../assets/courses/advanced-tech.png'
-import academicImage from '../assets/courses/academic.png'
+import {
+  courseCategories,
+  enterpriseServices,
+} from "../data/courses";
 
-import './Courses.css'
 
-const COURSE_IMAGES = {
-  'full-stack-web': fullStackImage,
-  'mobile-software-engineering': mobileImage,
-  'advanced-tech-analytics': advancedImage,
-  'academic-project-assistance': academicImage,
+const reveal = {
+  hidden: {
+    opacity: 0,
+    y: 35,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.75,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+};
+
+
+const courseIcons = {
+  "full-stack-web": Code2,
+  "mobile-software-engineering": Smartphone,
+  "programming-languages": Layers3,
+  "advanced-tech-analytics": Sparkles,
+  "academic-project-assistance": GraduationCap,
+  "embedded-iot-robotics": Cpu,
+  "data-database-technology": Database,
+  "ui-ux-design": Wrench,
+};
+
+
+function CourseRow({ track, index }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 18 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{
+        duration: 0.55,
+        delay: index * 0.045,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+      className="
+        group
+        grid grid-cols-[48px_1fr]
+        gap-4
+        border-t border-[#0757a8]/10
+        py-5
+        md:grid-cols-[56px_190px_1fr]
+        md:gap-6
+      "
+    >
+      <span
+        className="
+          font-mono text-[11px] font-bold
+          tracking-[0.15em]
+          text-[#0757a8]/45
+        "
+      >
+        {String(index + 1).padStart(2, "0")}
+      </span>
+
+      <h3
+        className="
+          text-[15px] font-bold tracking-[-0.02em]
+          text-[#10243a]
+          transition-colors duration-300
+          group-hover:text-[#0757a8]
+        "
+      >
+        {track.name}
+      </h3>
+
+      <p
+        className="
+          col-start-2
+          mt-1
+          max-w-2xl
+          text-[13px]
+          leading-6
+          text-[#607086]
+          md:col-start-auto
+          md:mt-0
+        "
+      >
+        {track.detail}
+      </p>
+    </motion.div>
+  );
 }
 
 
-const COURSE_META = {
-  'full-stack-web': {
-    eyebrow: 'SOFTWARE / 01',
-    statement: 'Build the systems people use.',
-    technologies: ['MERN', 'PYTHON', 'REACT', '.NET'],
-    color: 'blue',
-  },
+function CourseSection({ course, index }) {
+  const [open, setOpen] = useState(index === 0);
 
-  'mobile-software-engineering': {
-    eyebrow: 'APPLICATIONS / 02',
-    statement: 'From code to real applications.',
-    technologies: ['FLUTTER', 'JAVA', 'PYTHON', 'C / C++'],
-    color: 'violet',
-  },
+  const Icon = courseIcons[course.slug] || Code2;
 
-  'advanced-tech-analytics': {
-    eyebrow: 'INTELLIGENCE / 03',
-    statement: 'Where intelligence meets hardware.',
-    technologies: ['AI', 'IOT', 'ROBOTICS', 'DATA'],
-    color: 'cyan',
-  },
+  return (
+    <motion.section
+      variants={reveal}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.12 }}
+      className="
+        relative
+        border-t border-[#0757a8]/12
+        py-16
+        md:py-20
+        lg:py-24
+      "
+    >
+      {/* Background index */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          right-0
+          top-5
+          hidden
+          select-none
+          font-mono
+          text-[100px]
+          font-bold
+          leading-none
+          tracking-[-0.08em]
+          text-[#0757a8]/[0.035]
+          lg:block
+          xl:text-[150px]
+        "
+      >
+        {course.index}
+      </div>
 
-  'academic-project-assistance': {
-    eyebrow: 'PROJECTS / 04',
-    statement: 'From proposal to working system.',
-    technologies: ['B.TECH', 'M.TECH', 'BCA', 'MCA'],
-    color: 'green',
-  },
+      <div className="relative grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+        {/* Left */}
+        <div>
+          <div className="mb-7 flex items-center gap-3">
+            <div
+              className="
+                flex h-11 w-11
+                items-center justify-center
+                rounded-2xl
+                border border-[#0757a8]/12
+                bg-[#0757a8]/[0.045]
+                text-[#0757a8]
+              "
+            >
+              <Icon size={19} strokeWidth={1.8} />
+            </div>
+
+            <span
+              className="
+                font-mono text-[10px] font-bold
+                uppercase tracking-[0.22em]
+                text-[#0757a8]
+              "
+            >
+              {course.eyebrow}
+            </span>
+          </div>
+
+          <div className="mb-5 font-mono text-xs font-bold tracking-[0.2em] text-[#0757a8]/45">
+            {course.index} / 08
+          </div>
+
+          <h2
+            className="
+              max-w-xl
+              text-4xl
+              font-extrabold
+              leading-[0.98]
+              tracking-[-0.055em]
+              text-[#10243a]
+              sm:text-5xl
+              lg:text-[58px]
+            "
+          >
+            {course.title}
+          </h2>
+
+          <p
+            className="
+              mt-6
+              max-w-lg
+              text-lg
+              font-medium
+              leading-7
+              tracking-[-0.02em]
+              text-[#0757a8]
+            "
+          >
+            {course.tagline}
+          </p>
+
+          <p
+            className="
+              mt-5
+              max-w-xl
+              text-[14px]
+              leading-7
+              text-[#607086]
+            "
+          >
+            {course.summary}
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <span
+              className="
+                rounded-full
+                border border-[#0757a8]/12
+                bg-white
+                px-4 py-2
+                text-[11px]
+                font-bold
+                tracking-wide
+                text-[#10243a]
+              "
+            >
+              {course.format}
+            </span>
+
+            <span
+              className="
+                rounded-full
+                border border-[#0757a8]/12
+                bg-[#f7faff]
+                px-4 py-2
+                text-[11px]
+                font-bold
+                tracking-wide
+                text-[#607086]
+              "
+            >
+              {course.audience}
+            </span>
+          </div>
+          <a
+            href={`/courses/${course.slug}`}
+            className="
+    group
+    mt-7
+    inline-flex
+    items-center
+    gap-2
+    rounded-full
+    bg-[#0757a8]
+    px-5
+    py-3
+    text-xs
+    font-bold
+    !text-white
+    transition-all
+    duration-300
+    hover:-translate-y-0.5
+    hover:bg-[#043b78]
+    hover:!text-white
+  "
+          >
+            Explore Full Course
+            <ArrowUpRight
+              size={14}
+              className="
+      transition-transform
+      duration-300
+      group-hover:translate-x-0.5
+      group-hover:-translate-y-0.5
+    "
+            />
+          </a>
+        </div>
+
+        {/* Right */}
+        <div className="lg:pt-4">
+          <button
+            type="button"
+            onClick={() => setOpen(!open)}
+            className="
+              flex w-full
+              items-center justify-between
+              border-b border-[#0757a8]/12
+              pb-5
+              text-left
+            "
+          >
+            <div>
+              <span
+                className="
+                  block
+                  font-mono
+                  text-[10px]
+                  font-bold
+                  uppercase
+                  tracking-[0.22em]
+                  text-[#0757a8]
+                "
+              >
+                Curriculum
+              </span>
+
+              <span
+                className="
+                  mt-1
+                  block
+                  text-sm
+                  font-bold
+                  text-[#10243a]
+                "
+              >
+                {course.tracks.length} learning areas
+              </span>
+            </div>
+
+            <motion.span
+              animate={{
+                rotate: open ? 180 : 0,
+              }}
+              transition={{ duration: 0.3 }}
+              className="
+                flex h-10 w-10
+                items-center justify-center
+                rounded-full
+                border border-[#0757a8]/12
+                bg-white
+                text-[#0757a8]
+              "
+            >
+              <ChevronDown size={17} />
+            </motion.span>
+          </button>
+
+          <AnimatePresence initial={false}>
+            {open && (
+              <motion.div
+                initial={{
+                  height: 0,
+                  opacity: 0,
+                }}
+                animate={{
+                  height: "auto",
+                  opacity: 1,
+                }}
+                exit={{
+                  height: 0,
+                  opacity: 0,
+                }}
+                transition={{
+                  duration: 0.45,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="overflow-hidden"
+              >
+                <div className="pt-2">
+                  {course.tracks.map((track, trackIndex) => (
+                    <CourseRow
+                      key={track.name}
+                      track={track}
+                      index={trackIndex}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+    </motion.section>
+  );
 }
 
 
 export default function Courses() {
-
   return (
-    <main className="courses-page">
+    <main className="overflow-hidden bg-[#f7faff] text-[#10243a]">
 
       {/* =====================================================
-          HERO
-      ===================================================== */}
+          PAGE HERO
+      ====================================================== */}
+      <section className="relative px-5 pb-20 pt-32 sm:px-8 lg:px-12 lg:pb-28 lg:pt-40">
+        {/* Technical background */}
+        <div
+          className="
+            pointer-events-none
+            absolute inset-0
+            bg-[linear-gradient(rgba(7,87,168,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(7,87,168,0.045)_1px,transparent_1px)]
+            bg-[size:48px_48px]
+            [mask-image:linear-gradient(to_bottom,black,transparent_90%)]
+          "
+        />
 
-      <section className="courses-hero">
+        <div className="relative mx-auto max-w-[1240px]">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={reveal}
+            className="max-w-5xl"
+          >
+            <div className="mb-7 flex items-center gap-3">
+              <span className="h-px w-10 bg-[#0757a8]" />
 
-        <div className="courses-hero-grid" />
-
-        <div className="courses-hero-glow" />
-
-        <div className="container">
-
-          <div className="courses-hero-layout">
-
-            <Reveal className="courses-hero-content">
-
-              <div className="courses-kicker">
-                <span />
-                PLANET IIT / TECH ACADEMY
-              </div>
-
-              <h1>
-                Learn to
-                <br />
-                <span>build.</span>
-              </h1>
-
-              <p>
-                Technology training built around practical
-                development, real projects and the systems
-                behind modern software.
-              </p>
-
-              <div className="courses-hero-bottom">
-
-                <span>
-                  04
-                </span>
-
-                <p>
-                  PROGRAM
-                  <br />
-                  DIRECTIONS
-                </p>
-
-                <div className="courses-scroll-line" />
-
-                <span className="mono">
-                  SCROLL TO EXPLORE
-                </span>
-
-              </div>
-
-            </Reveal>
-
-
-            <Reveal
-              className="courses-hero-orbit"
-              delay={0.15}
-            >
-
-              <div className="course-orbit orbit-1" />
-              <div className="course-orbit orbit-2" />
-              <div className="course-orbit orbit-3" />
-
-              <div className="course-orbit-core">
-
-                <span>
-                  IIT
-                </span>
-
-                <small>
-                  TECH
-                </small>
-
-              </div>
-
-
-              <div className="orbit-node node-1">
-                AI
-              </div>
-
-              <div className="orbit-node node-2">
-                WEB
-              </div>
-
-              <div className="orbit-node node-3">
-                IOT
-              </div>
-
-              <div className="orbit-node node-4">
-                APP
-              </div>
-
-            </Reveal>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      {/* =====================================================
-          INTRO
-      ===================================================== */}
-
-      <section className="courses-intro">
-
-        <div className="container">
-
-          <Reveal className="courses-intro-layout">
-
-            <span className="courses-intro-index">
-              00
-            </span>
-
-            <div>
-
-              <span className="section-kicker">
-                THE ACADEMY
+              <span
+                className="
+                  font-mono
+                  text-[10px]
+                  font-bold
+                  uppercase
+                  tracking-[0.24em]
+                  text-[#0757a8]
+                "
+              >
+                Planet IIT / Courses
               </span>
-
-              <h2>
-                Don't just learn
-                <br />
-                <span>the syntax.</span>
-              </h2>
-
-              <p>
-                Our programs move from fundamentals to
-                practical implementation — giving students
-                the opportunity to work with the technologies,
-                tools and project environments that define
-                modern software and technology development.
-              </p>
-
             </div>
 
-          </Reveal>
-
-        </div>
-
-      </section>
-
-
-      {/* =====================================================
-          COURSE TRACKS
-      ===================================================== */}
-
-      <section className="course-tracks">
-
-        <div className="container">
-
-          <div className="course-track-list">
-
-            {courseCategories.map((course, index) => (
-
-              <CourseFeature
-                key={course.slug}
-                course={course}
-                index={index}
-              />
-
-            ))}
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      {/* =====================================================
-          LEARNING MODEL
-      ===================================================== */}
-
-      <section className="courses-method">
-
-        <div className="courses-method-glow" />
-
-        <div className="container">
-
-          <Reveal className="courses-method-heading">
-
-            <span className="section-kicker">
-              05 / THE LEARNING MODEL
-            </span>
-
-            <h2>
-              Learn it.
+            <h1
+              className="
+                max-w-5xl
+                text-5xl
+                font-extrabold
+                leading-[0.94]
+                tracking-[-0.065em]
+                text-[#10243a]
+                sm:text-6xl
+                md:text-7xl
+                lg:text-[92px]
+              "
+            >
+              Learn the technology.
               <br />
-              <span>Build it.</span>
-            </h2>
 
-          </Reveal>
+              <span className="text-[#0757a8]">
+                Build what matters.
+              </span>
+            </h1>
 
-
-          <div className="learning-process">
-
-            {[
-              {
-                number: '01',
-                title: 'Understand',
-                text: 'Start with the fundamentals and understand why the technology works.',
-              },
-              {
-                number: '02',
-                title: 'Experiment',
-                text: 'Work with tools, frameworks, databases and development environments.',
-              },
-              {
-                number: '03',
-                title: 'Build',
-                text: 'Turn concepts into practical applications, systems and projects.',
-              },
-              {
-                number: '04',
-                title: 'Present',
-                text: 'Document, demonstrate and explain what you built.',
-              },
-            ].map((step, index) => (
-
-              <Reveal
-                key={step.number}
-                className="learning-step"
-                delay={index * 0.08}
+            <div className="mt-9 grid gap-8 lg:grid-cols-[1fr_360px] lg:items-end">
+              <p
+                className="
+                  max-w-2xl
+                  text-base
+                  leading-7
+                  text-[#607086]
+                  sm:text-lg
+                "
               >
+                From full-stack development and mobile engineering to
+                artificial intelligence, robotics and academic project
+                development — Planet IIT brings practical technology
+                education under one roof.
+              </p>
 
-                <span>
-                  {step.number}
-                </span>
-
-                <div>
-
-                  <h3>
-                    {step.title}
-                  </h3>
-
-                  <p>
-                    {step.text}
-                  </p>
-
+              <div className="lg:border-l lg:border-[#0757a8]/15 lg:pl-7">
+                <div className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#0757a8]">
+                  Learning philosophy
                 </div>
 
-              </Reveal>
-
-            ))}
-
-          </div>
-
+                <div className="mt-3 text-xl font-bold tracking-[-0.03em] text-[#10243a]">
+                  Learn → Build → Present → Grow
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
-
       </section>
 
 
       {/* =====================================================
-          WHO IS IT FOR
-      ===================================================== */}
-
-      <section className="courses-audience">
-
-        <div className="container">
-
-          <Reveal className="audience-layout">
-
+          COURSE DIRECTORY INTRO
+      ====================================================== */}
+      <section className="px-5 pb-4 sm:px-8 lg:px-12">
+        <div className="mx-auto max-w-[1240px]">
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="
+              grid
+              gap-6
+              border-y border-[#0757a8]/12
+              py-7
+              md:grid-cols-[1fr_auto]
+              md:items-center
+            "
+          >
             <div>
-
-              <span className="section-kicker">
-                06 / WHO IT'S FOR
+              <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#0757a8]">
+                Course directory
               </span>
 
-              <h2>
-                Wherever you are
-                <br />
-                <span>in the journey.</span>
-              </h2>
-
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-[#607086]">
+                Explore the technical disciplines, development tracks and
+                academic support programmes available through Planet IIT.
+              </p>
             </div>
 
-
-            <div className="audience-list">
-
-              <div>
-                <span>01</span>
-                <strong>Students</strong>
-                <p>
-                  Build a strong technical foundation
-                  alongside academic learning.
-                </p>
-              </div>
-
-              <div>
-                <span>02</span>
-                <strong>Graduates</strong>
-                <p>
-                  Turn academic knowledge into practical
-                  development experience.
-                </p>
-              </div>
-
-              <div>
-                <span>03</span>
-                <strong>Professionals</strong>
-                <p>
-                  Develop new technical capabilities and
-                  expand your existing skill set.
-                </p>
-              </div>
-
+            <div className="font-mono text-xs font-bold text-[#0757a8]">
+              {String(courseCategories.length).padStart(2, "0")} PROGRAMMES
             </div>
-
-          </Reveal>
-
+          </motion.div>
         </div>
-
       </section>
 
 
       {/* =====================================================
-          CTA
-      ===================================================== */}
+          COURSES
+      ====================================================== */}
+      <section className="px-5 sm:px-8 lg:px-12">
+        <div className="mx-auto max-w-[1240px]">
+          {courseCategories.map((course, index) => (
+            <CourseSection
+              key={course.slug}
+              course={course}
+              index={index}
+            />
+          ))}
+        </div>
+      </section>
 
-      <section className="courses-final">
 
-        <div className="courses-final-grid" />
+      {/* =====================================================
+          ENTERPRISE IT SOLUTIONS
+      ====================================================== */}
+      <section className="relative overflow-hidden bg-[#0757a8] px-5 py-20 text-white sm:px-8 lg:px-12 lg:py-28">
+        {/* Decorative grid */}
+        <div
+          className="
+            pointer-events-none
+            absolute inset-0
+            opacity-[0.12]
+            bg-[linear-gradient(rgba(255,255,255,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.3)_1px,transparent_1px)]
+            bg-[size:42px_42px]
+          "
+        />
 
-        <div className="container">
+        <div className="relative mx-auto max-w-[1240px]">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20"
+          >
+            <div>
+              <div className="mb-7 flex items-center gap-3">
+                <span className="h-px w-10 bg-white/70" />
 
-          <Reveal className="courses-final-content">
+                <span className="font-mono text-[10px] font-bold uppercase tracking-[0.24em] text-white/75">
+                  Beyond the classroom
+                </span>
+              </div>
 
-            <span className="section-kicker">
-              PLANET IIT / NEXT STEP
-            </span>
-
-            <h2>
-              Find your
-              <br />
-              <span>direction.</span>
-            </h2>
-
-            <p>
-              Not sure which program fits your background,
-              goals or project? Tell us what you're trying
-              to achieve.
-            </p>
-
-            <div className="courses-final-actions">
-
-              <NavLink
-                to="/contact"
-                className="courses-final-primary"
+              <h2
+                className="
+                  max-w-xl
+                  text-5xl
+                  font-extrabold
+                  leading-[0.95]
+                  tracking-[-0.06em]
+                  sm:text-6xl
+                  !text-white
+                "
               >
-                Talk to an advisor
-                <span>↗</span>
-              </NavLink>
+                Technology
+                <br />
+                for real
+                <br />
+                businesses.
+              </h2>
 
-              <NavLink
-                to="/about"
-                className="courses-final-secondary"
+              <p className="mt-7 max-w-md text-sm leading-7 text-white/70">
+                Planet IIT is more than a technology academy. We also work
+                with businesses and organisations to design, develop and
+                implement practical IT solutions.
+              </p>
+
+              <a
+                href="/contact"
+                className="
+                  group mt-8
+                  inline-flex
+                  items-center gap-3
+                  rounded-full
+                  bg-white
+                  px-5 py-3.5
+                  text-sm font-bold
+                  !text-[#0757a8]
+                  transition-all duration-300
+                  hover:-translate-y-1
+                  hover:shadow-[0_14px_35px_rgba(0,0,0,0.18)]
+                "
               >
-                About Planet IIT
-              </NavLink>
+                Discuss a project
 
+                <ArrowUpRight
+                  size={16}
+                  className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
+              </a>
             </div>
 
-          </Reveal>
+            <div className="lg:pt-5">
+              {enterpriseServices.map((service, index) => (
+                <motion.div
+                  key={service.index}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.6,
+                    delay: index * 0.08,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  className="
+                    group
+                    grid
+                    grid-cols-[55px_1fr]
+                    gap-5
+                    border-t
+                    border-white/15
+                    py-7
+                    md:grid-cols-[70px_1fr]
+                    md:gap-7
+                  "
+                >
+                  <span className="font-mono text-xs font-bold text-white/45">
+                    {service.index}
+                  </span>
 
+                  <div>
+                    <h3
+                      className="
+                        text-xl
+                        font-bold
+                        tracking-[-0.03em]
+                        !text-white
+                        transition-transform duration-300
+                        group-hover:translate-x-1
+                      "
+                    >
+                      {service.title}
+                    </h3>
+
+                    <p className="mt-2 max-w-xl text-sm leading-6 text-white/65">
+                      {service.detail}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
+      </section>
 
+
+      {/* =====================================================
+          BOTTOM CTA
+      ====================================================== */}
+      <section className="bg-white px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="
+            mx-auto
+            max-w-[1240px]
+            border-b border-[#0757a8]/12
+            pb-16
+          "
+        >
+          <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+            <div>
+              <span className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-[#0757a8]">
+                Start your next chapter
+              </span>
+
+              <h2
+                className="
+                  mt-4
+                  max-w-4xl
+                  text-4xl
+                  font-extrabold
+                  leading-[0.98]
+                  tracking-[-0.055em]
+                  text-[#10243a]
+                  sm:text-5xl
+                  lg:text-6xl
+                "
+              >
+                Don't just study technology.
+                <span className="text-[#0757a8]">
+                  {" "}
+                  Build with it.
+                </span>
+              </h2>
+            </div>
+
+            <a
+              href="/contact"
+              className="
+                group
+                inline-flex
+                w-fit
+                items-center
+                gap-3
+                rounded-full
+                bg-[#0757a8]
+                px-6 py-4
+                text-sm
+                font-bold
+                !text-white
+                shadow-[0_10px_30px_rgba(7,87,168,0.16)]
+                transition-all duration-300
+                hover:-translate-y-1
+                hover:bg-[#043b78]
+                hover:!text-white
+                hover:shadow-[0_15px_35px_rgba(7,87,168,0.22)]
+              "
+            >
+              Talk to Planet IIT
+
+              <ArrowUpRight
+                size={17}
+                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </a>
+          </div>
+        </motion.div>
       </section>
 
     </main>
-  )
-}
-
-
-/* ============================================================
-   COURSE FEATURE
-   ============================================================ */
-
-function CourseFeature({ course, index }) {
-
-  const meta = COURSE_META[course.slug]
-
-  const image = COURSE_IMAGES[course.slug]
-
-  const reversed = index % 2 !== 0
-
-  return (
-
-    <Reveal
-      id={course.slug}
-      className={`course-feature ${reversed ? 'is-reversed' : ''}`}
-      delay={index * 0.06}
-    >
-
-      {/* IMAGE */}
-
-      <div className="course-feature-image">
-
-        <img
-          src={image}
-          alt={course.title}
-          loading="lazy"
-        />
-
-        <div className="course-feature-image-overlay" />
-
-        <div className="course-feature-image-grid" />
-
-        <span className="course-feature-image-code">
-          {meta.eyebrow}
-        </span>
-
-        <span className="course-feature-image-index">
-          {course.index}
-        </span>
-
-      </div>
-
-
-      {/* CONTENT */}
-
-      <div className="course-feature-content">
-
-        <div className="course-feature-top">
-
-          <span className="course-feature-number">
-            {course.index}
-          </span>
-
-          <span className="course-feature-category">
-            {meta.eyebrow}
-          </span>
-
-        </div>
-
-
-        <h2>
-          {course.title}
-        </h2>
-
-
-        <h3>
-          {meta.statement}
-        </h3>
-
-
-        <p className="course-feature-summary">
-          {course.summary}
-        </p>
-
-
-        {/* TECHNOLOGY STRIP */}
-
-        <div className="course-tech-strip">
-
-          {meta.technologies.map((tech) => (
-
-            <span key={tech}>
-              {tech}
-            </span>
-
-          ))}
-
-        </div>
-
-
-        {/* TRACKS */}
-
-        <div className="course-track-preview">
-
-          {course.tracks.slice(0, 4).map((track, i) => (
-
-            <div
-              className="course-track-item"
-              key={track.name}
-            >
-
-              <span>
-                {String(i + 1).padStart(2, '0')}
-              </span>
-
-              <strong>
-                {track.name}
-              </strong>
-
-            </div>
-
-          ))}
-
-        </div>
-
-
-        <div className="course-feature-footer">
-
-          <div>
-
-            <small>
-              FORMAT
-            </small>
-
-            <strong>
-              {course.format}
-            </strong>
-
-          </div>
-
-
-          <NavLink
-            to={`/courses/${course.slug}`}
-            className="course-explore-button"
-          >
-
-            Explore track
-
-            <span>
-              ↗
-            </span>
-
-          </NavLink>
-
-        </div>
-
-      </div>
-
-    </Reveal>
-
-  )
+  );
 }

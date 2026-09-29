@@ -1,288 +1,410 @@
-import { NavLink, Link } from 'react-router-dom'
-import logo from '../assets/logo-transparent.png'
-import { courseCategories } from '../data/courses'
-import './Footer.css'
+import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 
-const NAV = [
-  { label: 'Home', to: '/' },
-  { label: 'About', to: '/about' },
-  { label: 'Courses', to: '/courses' },
-  { label: 'Contact', to: '/contact' },
-]
+const footerLinks = [
+  {
+    label: "Home",
+    href: "/",
+  },
+  {
+    label: "About",
+    href: "/about",
+  },
+  {
+    label: "Courses",
+    href: "/courses",
+  },
+  {
+    label: "Contact",
+    href: "/contact",
+  },
+];
+
+const courseLinks = [
+  "Full Stack & Web Development",
+  "AI & Machine Learning",
+  "IoT & Robotics",
+  "Embedded Systems",
+];
 
 export default function Footer() {
-  const year = new Date().getFullYear()
-
   return (
-    <footer className="site-footer">
+    <footer className="relative overflow-hidden bg-[#052f5f] text-white">
+      {/* Background atmosphere */}
+      <div
+        aria-hidden="true"
+        className="
+          pointer-events-none
+          absolute
+          -right-40
+          -top-40
+          h-[500px]
+          w-[500px]
+          rounded-full
+          bg-[#1475d1]/20
+          blur-[120px]
+        "
+      />
 
-      {/* =====================================================
-          DECORATIVE BACKGROUND
-          ===================================================== */}
+      <div
+        aria-hidden="true"
+        className="
+          pointer-events-none
+          absolute
+          bottom-[-200px]
+          left-[-150px]
+          h-[450px]
+          w-[450px]
+          rounded-full
+          bg-[#1475d1]/10
+          blur-[120px]
+        "
+      />
 
-      <div className="footer-grid-lines" />
+      {/* Fine grid */}
+      <div
+        aria-hidden="true"
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          opacity-[0.045]
+          [background-image:linear-gradient(rgba(255,255,255,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.5)_1px,transparent_1px)]
+          [background-size:70px_70px]
+        "
+      />
 
-      <div className="footer-orbit orbit-one" />
-      <div className="footer-orbit orbit-two" />
+      <div className="relative mx-auto max-w-[1400px] px-6 lg:px-10">
+        {/* Main Footer CTA */}
+        {/* <div
+          className="
+            border-b
+            border-white/10
+            py-20
+            lg:py-28
+          "
+        >
+          <div className="max-w-[900px]">
+            <p
+              className="
+                mb-5
+                font-mono
+                text-[11px]
+                font-medium
+                uppercase
+                tracking-[0.25em]
+                text-[#70b5f5]
+              "
+            >
+              Planet Institute & Information Technology
+            </p>
 
-
-      <div className="container">
-
-        {/* ===================================================
-            FOOTER INTRO
-            =================================================== */}
-
-        <div className="footer-intro">
-
-          <div className="footer-intro-left">
-
-            <div className="footer-eyebrow">
-              <span className="status-dot" />
-              PLANET IIT / TECHNOLOGY EDUCATION
-            </div>
-
-            <h2>
-              Learn.
+            <h2
+              className="
+                max-w-[850px]
+                font-[Manrope]
+                text-4xl
+                font-extrabold
+                leading-[1.02]
+                tracking-[-0.045em]
+                sm:text-5xl
+                lg:text-7xl
+              "
+            >
+              Learn technology.
               <br />
-              <span>Build. Grow.</span>
+
+              <span className="text-[#71b8f8]">
+                Build what comes next.
+              </span>
             </h2>
 
-          </div>
-
-          <div className="footer-intro-right">
-
-            <p>
-              Practical technology education, professional IT
-              training and real-world digital solutions designed
-              to help you move forward.
-            </p>
-
-            <Link
-              to="/contact"
-              className="footer-main-cta"
+            <p
+              className="
+                mt-7
+                max-w-[650px]
+                text-base
+                leading-7
+                text-white/60
+                sm:text-lg
+              "
             >
-              <span>Start a Conversation</span>
-
-              <span className="footer-cta-icon">
-                ↗
-              </span>
-            </Link>
-
-          </div>
-
-        </div>
-
-
-        {/* ===================================================
-            DIVIDER
-            =================================================== */}
-
-        <div className="footer-divider">
-          <span />
-        </div>
-
-
-        {/* ===================================================
-            MAIN FOOTER
-            =================================================== */}
-
-        <div className="footer-content">
-
-          {/* =================================================
-              BRAND
-              ================================================= */}
-
-          <div className="footer-brand-block">
-
-            <Link
-              to="/"
-              className="footer-brand"
-            >
-
-              <div className="footer-logo-box">
-                <img
-                  src={logo}
-                  alt="Planet IIT"
-                />
-              </div>
-
-              <div className="footer-brand-copy">
-
-                <div className="footer-brand-name">
-                  PLANET <span>IIT</span>
-                </div>
-
-                <div className="footer-brand-sub">
-                  INSTITUTE & INFORMATION TECHNOLOGY
-                </div>
-
-              </div>
-
-            </Link>
-
-
-            <p className="footer-brand-description">
-              A technology-focused institute providing
-              professional IT training and practical
-              technology solutions.
+              From technology education to professional IT
+              solutions, Planet IIT helps students, developers
+              and organizations turn ideas into practical
+              digital experiences.
             </p>
-
-
-            <div className="footer-location">
-              <span className="location-pulse" />
-              <span>Kerala, India</span>
-            </div>
-
-          </div>
-
-
-          {/* =================================================
-              EXPLORE
-              ================================================= */}
-
-          <div className="footer-column">
-
-            <div className="footer-column-label">
-              01 / EXPLORE
-            </div>
-
-            <h3>
-              Navigate
-            </h3>
-
-            <nav className="footer-links">
-
-              {NAV.map((item) => (
-                <NavLink
-                  key={item.to}
-                  to={item.to}
-                >
-                  <span>{item.label}</span>
-                  <span className="footer-link-arrow">
-                    ↗
-                  </span>
-                </NavLink>
-              ))}
-
-            </nav>
-
-          </div>
-
-
-          {/* =================================================
-              PROGRAMS
-              ================================================= */}
-
-          <div className="footer-column">
-
-            <div className="footer-column-label">
-              02 / PROGRAMS
-            </div>
-
-            <h3>
-              Learn With Us
-            </h3>
-
-            <nav className="footer-links">
-
-              {courseCategories
-                .slice(0, 5)
-                .map((course) => (
-                  <NavLink
-                    key={course.slug}
-                    to={`/courses#${course.slug}`}
-                  >
-                    <span>
-                      {course.shortTitle}
-                    </span>
-
-                    <span className="footer-link-arrow">
-                      ↗
-                    </span>
-                  </NavLink>
-                ))}
-
-            </nav>
-
-          </div>
-
-
-          {/* =================================================
-              CONTACT
-              ================================================= */}
-
-          <div className="footer-column footer-contact">
-
-            <div className="footer-column-label">
-              03 / CONNECT
-            </div>
-
-            <h3>
-              Get in Touch
-            </h3>
 
             <a
-              href="mailto:info@planetiit.com"
-              className="footer-email"
+              href="/contact"
+              className="
+                group
+                mt-9
+                inline-flex
+                items-center
+                gap-3
+                border-b
+                border-white/40
+                pb-2
+                text-sm
+                font-bold
+                text-white
+                transition-colors
+                hover:border-[#71b8f8]
+                hover:text-[#71b8f8]
+              "
             >
-              info@planetiit.com
+              Let's build something meaningful
+
+              <ArrowUpRight
+                size={17}
+                className="
+                  transition-transform
+                  duration-300
+                  group-hover:translate-x-1
+                  group-hover:-translate-y-1
+                "
+              />
+            </a>
+          </div>
+        </div> */}
+
+        {/* Footer Information */}
+        <div
+          className="
+            grid
+            gap-12
+            py-14
+            md:grid-cols-2
+            lg:grid-cols-[1.4fr_0.7fr_1fr_1.2fr]
+            lg:gap-10
+            lg:py-20
+          "
+        >
+          {/* Brand */}
+          <div>
+            <a
+              href="/"
+              aria-label="Planet IIT Home"
+              className="inline-flex"
+            >
+              <img
+                src="/assets/logo.png"
+                alt="Planet IIT - Planet Institute and Information Technology"
+                className="
+                  h-[72px]
+                  w-auto
+                  object-contain
+                "
+              />
             </a>
 
-            <div className="footer-contact-location">
-              Kerala, India
-            </div>
+            <p
+              className="
+                mt-5
+                max-w-[330px]
+                text-sm
+                leading-6
+                text-white/50
+              "
+            >
+              Planet Institute and Information Technology —
+              a technology academy and IT solutions company
+              based in Kerala.
+            </p>
+          </div>
 
-            <p className="footer-address">
-              Near Aruvithura Akshaya Center,
-              Erattupetta, Kottayam District,
-              Kerala, India — 686122
+          {/* Explore */}
+          <div>
+            <p
+              className="
+                mb-5
+                font-mono
+                text-[10px]
+                uppercase
+                tracking-[0.2em]
+                text-[#71b8f8]
+              "
+            >
+              Explore
             </p>
 
+            <nav className="flex flex-col items-start gap-3">
+              {footerLinks.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="
+                    text-sm
+                    text-white/60
+                    transition-colors
+                    hover:text-white
+                  "
+                >
+                  {item.label}
+                </a>
+              ))}
+            </nav>
           </div>
 
+          {/* Courses */}
+          <div>
+            <p
+              className="
+                mb-5
+                font-mono
+                text-[10px]
+                uppercase
+                tracking-[0.2em]
+                text-[#71b8f8]
+              "
+            >
+              Learning
+            </p>
+
+            <div className="flex flex-col gap-3">
+              {courseLinks.map((course) => (
+                <a
+                  key={course}
+                  href="/courses"
+                  className="
+                    max-w-[240px]
+                    text-sm
+                    leading-5
+                    text-white/60
+                    transition-colors
+                    hover:text-white
+                  "
+                >
+                  {course}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <p
+              className="
+                mb-5
+                font-mono
+                text-[10px]
+                uppercase
+                tracking-[0.2em]
+                text-[#71b8f8]
+              "
+            >
+              Contact
+            </p>
+
+            <div className="space-y-5">
+              <a
+                href="mailto:info@planetiit.com"
+                className="
+                  group
+                  flex
+                  items-start
+                  gap-3
+                  text-sm
+                  text-white/60
+                  transition-colors
+                  hover:text-white
+                "
+              >
+                <Mail
+                  size={17}
+                  className="mt-0.5 shrink-0 text-[#71b8f8]"
+                />
+
+                <span>
+                  info@planetiit.com
+                </span>
+              </a>
+
+              <a
+                href="tel:+919544006688"
+                className="
+                  group
+                  flex
+                  items-start
+                  gap-3
+                  text-sm
+                  text-white/60
+                  transition-colors
+                  hover:text-white
+                "
+              >
+                <Phone
+                  size={17}
+                  className="mt-0.5 shrink-0 text-[#71b8f8]"
+                />
+
+                <span>
+                  +91 95440 06688
+                </span>
+              </a>
+
+              <div
+                className="
+                  flex
+                  items-start
+                  gap-3
+                  text-sm
+                  leading-6
+                  text-white/60
+                "
+              >
+                <MapPin
+                  size={17}
+                  className="mt-0.5 shrink-0 text-[#71b8f8]"
+                />
+
+                <span>
+                  Near Aruvithura Akshaya Center,
+                  <br />
+                  Erattupetta,
+                  <br />
+                  Kottayam District,
+                  <br />
+                  Kerala — 686122
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
 
+        {/* Bottom */}
+        <div
+          className="
+            flex
+            flex-col
+            gap-4
+            border-t
+            border-white/10
+            py-6
+            text-xs
+            text-white/35
+            sm:flex-row
+            sm:items-center
+            sm:justify-between
+          "
+        >
+          <p>
+            © {new Date().getFullYear()} Planet Institute and
+            Information Technology. All rights reserved.
+          </p>
 
-        {/* ===================================================
-            BOTTOM
-            =================================================== */}
+          <div className="flex items-center gap-5">
+            <a
+              href="https://pathansappele.com"
+              className="transition-colors hover:text-white"
+            >
+             Powered By Pathans Apple Info Tech
+            </a>
 
-        <div className="footer-bottom">
-
-          <div className="footer-copyright">
-            © {year} Planet IIT.
-            <span>All rights reserved.</span>
+            
           </div>
-
-
-          <div className="footer-bottom-center">
-
-            <span>IT TRAINING</span>
-
-            <span className="footer-dot">
-              •
-            </span>
-
-            <span>SOFTWARE</span>
-
-            <span className="footer-dot">
-              •
-            </span>
-
-            <span>TECHNOLOGY</span>
-
-          </div>
-
-
-          <div className="footer-code">
-            <span className="footer-code-dot" />
-            PLANET_IIT
-          </div>
-
         </div>
-
       </div>
-
     </footer>
-  )
+  );
 }
