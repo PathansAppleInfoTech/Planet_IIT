@@ -7,7 +7,7 @@ import {
   Phone,
   Send,
 } from "lucide-react";
-
+import { FaWhatsapp } from "react-icons/fa";
 import { motion } from "motion/react";
 import { useState } from "react";
 
@@ -487,6 +487,70 @@ export default function Contact() {
                       "
                     >
                       +91 95440 06688
+                    </span>
+
+                  </div>
+
+                </a>
+
+                <a
+                  href="https://wa.me/919207420095"
+                  className="
+                    group
+                    flex
+                    items-start
+                    gap-4
+                  "
+                >
+
+                  <span
+                    className="
+                      flex
+                      h-11
+                      w-11
+                      shrink-0
+                      items-center
+                      justify-center
+                      rounded-full
+                      bg-[#eef5fc]
+                      text-[#0757a8]
+                      transition-colors
+                      duration-300
+                      group-hover:bg-[#0757a8]
+                      group-hover:text-white
+                    "
+                  >
+                    <FaWhatsapp size={18} />
+                  </span>
+
+
+                  <div>
+
+                    <span
+                      className="
+                        block
+                        font-mono
+                        text-[9px]
+                        uppercase
+                        tracking-[0.18em]
+                        text-[#8b99aa]
+                      "
+                    >
+                      Whatsapp
+                    </span>
+
+                    <span
+                      className="
+                        mt-1
+                        block
+                        text-sm
+                        font-bold
+                        text-[#10243a]
+                        transition-colors
+                        group-hover:text-[#0757a8]
+                      "
+                    >
+                      +91 92074 20095
                     </span>
 
                   </div>
